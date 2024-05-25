@@ -34,9 +34,9 @@ sources/1 = SubResource("TileSetAtlasSource_vmc6w")
 
 [sub_resource type="Curve2D" id="Curve2D_jy3kb"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1600, -832, 0, 0, 0, 0, 1600, -832, 0, 0, 0, 0, 1600, 576, 0, 0, 0, 0, 1088, 576, 0, 0, 0, 0, 1088, -320, 0, 0, 0, 0, -1088, -320, 0, 0, 0, 0, -1088, 192, 0, 0, 0, 0, 64, 192, 0, 0, 0, 0, 64, 448, 0, 0, 0, 0, 512, 448)
+"points": PackedVector2Array(0, 0, 0, 0, -1600, -832, 0, 0, 0, 0, 1472, -832, -25.5389, -29.541, 25.5389, 29.541, 1570, -799, 0, 0, 0, 0, 1600, -704, 0, 0, 0, 0, 1600, 448, 22.181, -20.7652, -22.181, 20.7652, 1570, 554, 0, 0, 0, 0, 1472, 576, 0, 0, 0, 0, 1216, 576, 21, 29, -21, -29, 1122, 542, 0, 0, 0, 0, 1088, 448, 0, 0, 0, 0, 1088, -320, 0, 0, 0, 0, -1088, -320, 0, 0, 0, 0, -1088, 192, 0, 0, 0, 0, 64, 192, 0, 0, 0, 0, 64, 448, 0, 0, 0, 0, 512, 448)
 }
-point_count = 10
+point_count = 16
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_enj8k")
@@ -50,6 +50,8 @@ layer_0/tile_data = PackedInt32Array(0, 458753, 1, 1, 458753, 1, -65536, 131073,
 curve = SubResource("Curve2D_jy3kb")
 
 [node name="Enemy" parent="TileMap/Path2D" instance=ExtResource("3_ch801")]
+position = Vector2(-1600, -832)
+SPEED = 500.0
 
 [node name="Artstand" type="Sprite2D" parent="."]
 position = Vector2(499, 344)
