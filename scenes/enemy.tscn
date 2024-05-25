@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d175g5ac1ab72"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_4wxmt"]
+[ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="2_4xa3w"]
+
+[node name="Enemy" type="PathFollow2D"]
+position = Vector2(-1600, -832)
+script = ExtResource("1_4wxmt")
+SPEED = 300.0
+
+[node name="Robot" type="Sprite2D" parent="."]
+texture = ExtResource("2_4xa3w")
