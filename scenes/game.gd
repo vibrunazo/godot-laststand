@@ -18,17 +18,24 @@ func bind_signals():
 	artstand.clicked.connect(_on_artstand_clicked)
 	
 func show_pick_tower_menu():
+	if not is_selecting_tower: return
 	if not pick_tower_scene: return
 	if is_instance_valid(tower_menu_ref):
 		tower_menu_ref.queue_free()
 	tower_menu_ref = pick_tower_scene.instantiate() as PickTowerMenu
 	ui_layer.add_child(tower_menu_ref)
+	tower_menu_ref.button_pressed.connect(_on_tower_button_pressed)
 
 func hide_pick_tower_menu():
 	game_cam.zoom_out()
 	if not is_instance_valid(tower_menu_ref): return
 	tower_menu_ref.anim_end()
 
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		if is_selecting_tower:
+			_on_artstand_clicked()
+			
 func _on_artstand_clicked():
 	is_selecting_tower = !is_selecting_tower
 	if is_selecting_tower: 
@@ -37,8 +44,8 @@ func _on_artstand_clicked():
 		show_pick_tower_menu()
 	else: 
 		hide_pick_tower_menu()
+
+func _on_tower_button_pressed(button):
+	await get_tree().create_timer(0.4).timeout
+	_on_artstand_clicked()
 		
-func _unhandled_input(event):
-	if event is InputEventMouseButton and event.is_pressed():
-		if is_selecting_tower:
-			_on_artstand_clicked()

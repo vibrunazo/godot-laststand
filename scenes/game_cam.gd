@@ -43,7 +43,6 @@ func zoom_to(target_pos: Vector2, target_zoom: Vector2, tween_time: float = 0.5)
 
 func _on_zoom_finished():
 	zoom_finished.emit()
-	print('zoom finished')
 
 func zoom_out():
 	zoom_to(ini_pos, ini_zoom, zoom_out_speed)
