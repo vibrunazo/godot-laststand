@@ -13,7 +13,7 @@ func anim_start():
 	anim_tween = create_tween()
 	anim_tween.set_ease(Tween.EASE_OUT)
 	anim_tween.set_trans(Tween.TRANS_ELASTIC)
-	anim_tween.tween_property(self, "scale", Vector2(1,1), 1)
+	anim_tween.tween_property(self, "scale", Vector2(1,1), 0.9)
 
 func anim_end():
 	anim_tween = create_tween()

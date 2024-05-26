@@ -1,6 +1,11 @@
 class_name GameCam
 extends Camera2D
 
+## Time the zoom out tween takes in seconds
+@export var zoom_out_speed: float = 0.6
+## Time the zoom in tween takes in seconds
+@export var zoom_in_speed: float = 0.3
+
 ## default zoom to reset to on zoom out
 var ini_zoom: Vector2
 ## default global_position to reset to on zoom out
@@ -23,7 +28,7 @@ func toggle_zoom(target_node: Node2D):
 
 var zoom_tween: Tween
 func focus_on(target_node: Node2D):
-	zoom_to(target_node.global_position, Vector2(1,1))
+	zoom_to(target_node.global_position, Vector2(1,1), zoom_in_speed)
 	is_zoomed_in = true
 
 func zoom_to(target_pos: Vector2, target_zoom: Vector2, tween_time: float = 0.5):
@@ -41,5 +46,5 @@ func _on_zoom_finished():
 	print('zoom finished')
 
 func zoom_out():
-	zoom_to(ini_pos, ini_zoom)
+	zoom_to(ini_pos, ini_zoom, zoom_out_speed)
 	is_zoomed_in = false

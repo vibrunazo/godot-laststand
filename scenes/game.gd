@@ -25,6 +25,7 @@ func show_pick_tower_menu():
 	ui_layer.add_child(tower_menu_ref)
 
 func hide_pick_tower_menu():
+	game_cam.zoom_out()
 	if not is_instance_valid(tower_menu_ref): return
 	tower_menu_ref.anim_end()
 
@@ -35,5 +36,9 @@ func _on_artstand_clicked():
 		await game_cam.zoom_finished
 		show_pick_tower_menu()
 	else: 
-		game_cam.zoom_out()
-		tower_menu_ref.anim_end()
+		hide_pick_tower_menu()
+		
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.is_pressed():
+		if is_selecting_tower:
+			_on_artstand_clicked()
