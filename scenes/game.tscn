@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy48vujtsqyyq"]
+[gd_scene load_steps=13 format=3 uid="uid://dy48vujtsqyyq"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_enj8k"]
 [ext_resource type="Texture2D" uid="uid://boap74n4w1l8o" path="res://assets/tex/TCom_Wood_ParquetFiveFinger_512_albedo.png" id="2_j6hou"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bnxul7hgd4yej" path="res://scenes/artstand.tscn" id="6_g8df1"]
 [ext_resource type="Texture2D" uid="uid://4xa3hg64rb1n" path="res://assets/tex/vignette.png" id="7_5tywr"]
 [ext_resource type="PackedScene" uid="uid://drv80csgi37yb" path="res://scenes/spawner.tscn" id="8_ie2qt"]
+[ext_resource type="Script" path="res://scenes/game_cam.gd" id="8_ooj1h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmc6w"]
 texture = ExtResource("4_vq1w5")
@@ -79,6 +80,8 @@ curve = SubResource("Curve2D_jy3kb")
 position = Vector2(-1600, -832)
 
 [node name="Artstand" parent="TileMap/Path2D" instance=ExtResource("6_g8df1")]
+unique_name_in_owner = true
+position = Vector2(448, 384)
 
 [node name="Robot3" type="Sprite2D" parent="."]
 position = Vector2(-378, -319)
@@ -88,8 +91,9 @@ texture = ExtResource("3_xhur8")
 position = Vector2(-72, 327)
 texture = ExtResource("3_xhur8")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="GameCam" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+script = ExtResource("8_ooj1h")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 

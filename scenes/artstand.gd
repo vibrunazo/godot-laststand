@@ -1,6 +1,8 @@
 class_name ArtStand
 extends Sprite2D
 
+signal clicked
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,3 +10,4 @@ func _ready():
 
 func _on_button_down():
 	print('le click')
+	clicked.emit()
