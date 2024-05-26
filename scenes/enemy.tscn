@@ -6,7 +6,6 @@
 [node name="Enemy" type="PathFollow2D"]
 loop = false
 script = ExtResource("1_4wxmt")
-SPEED = 300.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true

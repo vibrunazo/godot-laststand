@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy48vujtsqyyq"]
+[gd_scene load_steps=12 format=3 uid="uid://dy48vujtsqyyq"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_enj8k"]
 [ext_resource type="Texture2D" uid="uid://ctfuqf4ddgd8o" path="res://assets/tex/artstand.png" id="2_8icgr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="3_xhur8"]
 [ext_resource type="Texture2D" uid="uid://clqmtykrn8bnw" path="res://assets/tex/terrain.png" id="4_vq1w5"]
 [ext_resource type="Texture2D" uid="uid://4xa3hg64rb1n" path="res://assets/tex/vignette.png" id="7_5tywr"]
+[ext_resource type="PackedScene" uid="uid://drv80csgi37yb" path="res://scenes/spawner.tscn" id="8_ie2qt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmc6w"]
 texture = ExtResource("4_vq1w5")
@@ -76,7 +77,6 @@ curve = SubResource("Curve2D_jy3kb")
 
 [node name="Enemy" parent="TileMap/Path2D" instance=ExtResource("3_ch801")]
 position = Vector2(-1600, -832)
-SPEED = 500.0
 
 [node name="Artstand" type="Sprite2D" parent="TileMap/Path2D"]
 y_sort_enabled = true
@@ -112,3 +112,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_5tywr")
 metadata/_edit_lock_ = true
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("8_ie2qt")]
+path = NodePath("../TileMap/Path2D")
