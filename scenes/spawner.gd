@@ -34,7 +34,7 @@ func update_difficulty():
 	var di: float = float(difficulty) / float(max_difficulty)
 	time_between_spawns = round(difficulty_curve.sample_baked(di) * (initial_time_between_spawns - min_time_between_spawns) + min_time_between_spawns)
 	time_between_spawns = clamp(time_between_spawns, min_time_between_spawns, initial_time_between_spawns)
-	print('time: %s, d: %s, tbs: %s, di: %s, c: %s' % [time, difficulty, time_between_spawns, di, difficulty_curve.sample_baked(di)])
+	#print('time: %s, d: %s, tbs: %s, di: %s, c: %s' % [time, difficulty, time_between_spawns, di, difficulty_curve.sample_baked(di)])
 	
 func _on_spawn_timer_timeout():
 	if not path: return

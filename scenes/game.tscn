@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://dy48vujtsqyyq"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_enj8k"]
-[ext_resource type="Texture2D" uid="uid://ctfuqf4ddgd8o" path="res://assets/tex/artstand.png" id="2_8icgr"]
 [ext_resource type="Texture2D" uid="uid://boap74n4w1l8o" path="res://assets/tex/TCom_Wood_ParquetFiveFinger_512_albedo.png" id="2_j6hou"]
 [ext_resource type="PackedScene" uid="uid://d175g5ac1ab72" path="res://scenes/enemy.tscn" id="3_ch801"]
 [ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="3_xhur8"]
 [ext_resource type="Texture2D" uid="uid://clqmtykrn8bnw" path="res://assets/tex/terrain.png" id="4_vq1w5"]
+[ext_resource type="PackedScene" uid="uid://bnxul7hgd4yej" path="res://scenes/artstand.tscn" id="6_g8df1"]
 [ext_resource type="Texture2D" uid="uid://4xa3hg64rb1n" path="res://assets/tex/vignette.png" id="7_5tywr"]
 [ext_resource type="PackedScene" uid="uid://drv80csgi37yb" path="res://scenes/spawner.tscn" id="8_ie2qt"]
 
@@ -78,11 +78,7 @@ curve = SubResource("Curve2D_jy3kb")
 [node name="Enemy" parent="TileMap/Path2D" instance=ExtResource("3_ch801")]
 position = Vector2(-1600, -832)
 
-[node name="Artstand" type="Sprite2D" parent="TileMap/Path2D"]
-y_sort_enabled = true
-position = Vector2(512, 384)
-texture = ExtResource("2_8icgr")
-offset = Vector2(0, -64)
+[node name="Artstand" parent="TileMap/Path2D" instance=ExtResource("6_g8df1")]
 
 [node name="Robot3" type="Sprite2D" parent="."]
 position = Vector2(-378, -319)
@@ -110,6 +106,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("7_5tywr")
 metadata/_edit_lock_ = true
 
