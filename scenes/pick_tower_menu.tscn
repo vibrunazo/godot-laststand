@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxnm5x3mq25u3"]
+[gd_scene load_steps=6 format=3 uid="uid://cxnm5x3mq25u3"]
 
 [ext_resource type="Script" path="res://scenes/pick_tower_menu.gd" id="1_ms78v"]
 [ext_resource type="PackedScene" uid="uid://ckuw14smlun2o" path="res://scenes/pick_tower_button.tscn" id="2_g6gme"]
+[ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="3_jdimj"]
+[ext_resource type="Texture2D" uid="uid://dmhb0k2ut4cfp" path="res://assets/tex/canvas_monalisa.png" id="4_g4wxc"]
+[ext_resource type="Texture2D" uid="uid://dqpxwpntknusu" path="res://assets/tex/canvas_escher.png" id="5_t1cue"]
 
 [node name="PickTowerMenu" type="Control"]
 layout_mode = 3
@@ -16,21 +19,24 @@ script = ExtResource("1_ms78v")
 
 [node name="PickTowerButton" parent="." instance=ExtResource("2_g6gme")]
 layout_mode = 1
-offset_left = 128.0
-offset_top = -156.0
-offset_right = 392.0
-offset_bottom = 108.0
+offset_left = 256.0
+offset_top = -220.0
+offset_right = 608.0
+icon = ExtResource("3_jdimj")
+icon_alignment = 1
 
 [node name="PickTowerButton2" parent="." instance=ExtResource("2_g6gme")]
 layout_mode = 1
-offset_left = -384.0
-offset_top = -156.0
-offset_right = -120.0
-offset_bottom = 108.0
+offset_left = -576.0
+offset_top = -284.0
+offset_right = -298.0
+offset_bottom = 106.0
+icon = ExtResource("4_g4wxc")
 
 [node name="PickTowerButton3" parent="." instance=ExtResource("2_g6gme")]
 layout_mode = 1
-offset_left = -128.0
-offset_top = -412.0
-offset_right = 136.0
-offset_bottom = -148.0
+offset_left = -192.0
+offset_top = -540.0
+offset_right = 164.0
+offset_bottom = -234.0
+icon = ExtResource("5_t1cue")

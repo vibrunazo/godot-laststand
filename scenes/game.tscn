@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy48vujtsqyyq"]
+[gd_scene load_steps=12 format=3 uid="uid://dy48vujtsqyyq"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_enj8k"]
 [ext_resource type="PackedScene" uid="uid://cxnm5x3mq25u3" path="res://scenes/pick_tower_menu.tscn" id="2_7l7u6"]
 [ext_resource type="Texture2D" uid="uid://boap74n4w1l8o" path="res://assets/tex/TCom_Wood_ParquetFiveFinger_512_albedo.png" id="2_j6hou"]
-[ext_resource type="PackedScene" uid="uid://d175g5ac1ab72" path="res://scenes/enemy.tscn" id="3_ch801"]
-[ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="3_xhur8"]
 [ext_resource type="Texture2D" uid="uid://clqmtykrn8bnw" path="res://assets/tex/terrain.png" id="4_vq1w5"]
 [ext_resource type="PackedScene" uid="uid://bnxul7hgd4yej" path="res://scenes/artstand.tscn" id="6_g8df1"]
 [ext_resource type="Texture2D" uid="uid://4xa3hg64rb1n" path="res://assets/tex/vignette.png" id="7_5tywr"]
@@ -78,20 +76,9 @@ layer_0/tile_data = PackedInt32Array(0, 131073, 3, 1, 131073, 3, -65536, 131073,
 y_sort_enabled = true
 curve = SubResource("Curve2D_jy3kb")
 
-[node name="Enemy" parent="TileMap/Path2D" instance=ExtResource("3_ch801")]
-position = Vector2(-1600, -832)
-
 [node name="Artstand" parent="TileMap/Path2D" instance=ExtResource("6_g8df1")]
 unique_name_in_owner = true
 position = Vector2(448, 384)
-
-[node name="Robot3" type="Sprite2D" parent="."]
-position = Vector2(-378, -319)
-texture = ExtResource("3_xhur8")
-
-[node name="Robot2" type="Sprite2D" parent="."]
-position = Vector2(-72, 327)
-texture = ExtResource("3_xhur8")
 
 [node name="GameCam" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
