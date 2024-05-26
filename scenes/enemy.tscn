@@ -9,5 +9,6 @@ script = ExtResource("1_4wxmt")
 SPEED = 300.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("2_4xa3w")
 offset = Vector2(0, -64)
