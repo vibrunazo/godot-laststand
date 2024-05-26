@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckuw14smlun2o"]
+
+[ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="1_e24w5"]
+[ext_resource type="Script" path="res://scenes/pick_tower_button.gd" id="2_xw6no"]
+
+[node name="PickTowerButton" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -132.0
+offset_right = 132.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("1_e24w5")
+flat = true
+script = ExtResource("2_xw6no")

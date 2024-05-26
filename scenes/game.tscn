@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy48vujtsqyyq"]
+[gd_scene load_steps=14 format=3 uid="uid://dy48vujtsqyyq"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_enj8k"]
+[ext_resource type="PackedScene" uid="uid://cxnm5x3mq25u3" path="res://scenes/pick_tower_menu.tscn" id="2_7l7u6"]
 [ext_resource type="Texture2D" uid="uid://boap74n4w1l8o" path="res://assets/tex/TCom_Wood_ParquetFiveFinger_512_albedo.png" id="2_j6hou"]
 [ext_resource type="PackedScene" uid="uid://d175g5ac1ab72" path="res://scenes/enemy.tscn" id="3_ch801"]
 [ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="3_xhur8"]
@@ -44,6 +45,7 @@ point_count = 16
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_enj8k")
+pick_tower_scene = ExtResource("2_7l7u6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -1728.0
@@ -95,9 +97,9 @@ texture = ExtResource("3_xhur8")
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("8_ooj1h")
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="FXLayer" type="CanvasLayer" parent="."]
 
-[node name="Vignette2" type="TextureRect" parent="UILayer"]
+[node name="Vignette2" type="TextureRect" parent="FXLayer"]
 modulate = Color(1, 1, 1, 0.54902)
 anchors_preset = 8
 anchor_left = 0.5
@@ -116,3 +118,5 @@ metadata/_edit_lock_ = true
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("8_ie2qt")]
 path = NodePath("../TileMap/Path2D")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
