@@ -2,8 +2,10 @@
 class_name Tower
 extends Node2D
 
+@onready var attack_timer = $AttackTimer
 
 var is_being_placed: bool = true
+var aggro_list: Array[Enemy]
 
 func _ready():
 	anim_start()
@@ -11,6 +13,15 @@ func _ready():
 func _process(_delta):
 	if is_being_placed:
 		update_pos_undermouse()
+		return
+
+func try_attack():
+	if aggro_list.is_empty(): return
+	if is_being_placed: return
+	attack();
+
+func attack():
+	print('BOOM')
 
 func update_pos_undermouse():
 	global_position = get_global_mouse_position()
@@ -32,3 +43,22 @@ func anim_placed():
 func place():
 	is_being_placed = false
 	anim_placed()
+	
+
+func _on_aggro_area_area_entered(area):
+	if not area.get_parent() is Enemy: return
+	aggro_list.append(area.get_parent())
+	attack_timer.start()
+	try_attack()
+
+func _on_aggro_area_area_exited(area: Area2D):
+	var enemy := area.get_parent()
+	if not enemy is Enemy: return
+	aggro_list.erase(enemy)
+
+
+func _on_attack_timer_timeout():
+	if aggro_list.is_empty():
+		attack_timer.stop()
+		return
+	try_attack()
