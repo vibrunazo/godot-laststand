@@ -84,6 +84,8 @@ position = Vector2(448, 384)
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("8_ooj1h")
 
+[node name="TowerLayer" type="Node2D" parent="."]
+
 [node name="FXLayer" type="CanvasLayer" parent="."]
 
 [node name="Vignette2" type="TextureRect" parent="FXLayer"]

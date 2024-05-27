@@ -6,9 +6,11 @@ extends Node2D
 @onready var artstand: ArtStand = %Artstand
 @onready var game_cam: GameCam = $GameCam
 @onready var ui_layer = $UILayer
+@onready var tower_layer = $TowerLayer
 
 var is_selecting_tower: bool = false
 var tower_menu_ref: PickTowerMenu
+var tower_being_placed: Tower
 
 func _ready():
 	print('game started')
@@ -20,6 +22,7 @@ func bind_signals():
 func show_pick_tower_menu():
 	if not is_selecting_tower: return
 	if not pick_tower_scene: return
+	cancel_tower_placing()
 	if is_instance_valid(tower_menu_ref):
 		tower_menu_ref.queue_free()
 	tower_menu_ref = pick_tower_scene.instantiate() as PickTowerMenu
@@ -31,13 +34,34 @@ func hide_pick_tower_menu():
 	if not is_instance_valid(tower_menu_ref): return
 	tower_menu_ref.anim_end()
 
+func cancel_tower_placing():
+	if is_instance_valid(tower_being_placed):
+		tower_being_placed.queue_free()
+		tower_being_placed = null
+
+func place_tower():
+	if not is_instance_valid(tower_being_placed): return
+	tower_being_placed.place()
+	tower_being_placed = null
+	
+func spawn_tower(tower_data: TowerData):
+	if not tower_data: return
+	cancel_tower_placing()
+	var tower_scene: PackedScene = tower_data.scene
+	var tower: Tower = tower_scene.instantiate() as Tower
+	tower_layer.add_child(tower)
+	tower_being_placed = tower
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if is_selecting_tower:
 			_on_artstand_clicked()
+		elif is_instance_valid(tower_being_placed):
+			place_tower()
 			
 func _on_artstand_clicked():
 	is_selecting_tower = !is_selecting_tower
+	cancel_tower_placing()
 	if is_selecting_tower: 
 		game_cam.focus_on(artstand)
 		await game_cam.zoom_finished
@@ -45,7 +69,9 @@ func _on_artstand_clicked():
 	else: 
 		hide_pick_tower_menu()
 
-func _on_tower_button_pressed(button):
+func _on_tower_button_pressed(button: PickTowerButton):
+	var tower_data: TowerData = button.tower_data
 	await get_tree().create_timer(0.4).timeout
 	_on_artstand_clicked()
-		
+	await get_tree().create_timer(0.2).timeout
+	spawn_tower(tower_data)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TowerData" load_steps=4 format=3 uid="uid://dovvmi4xjevxx"]
+
+[ext_resource type="Script" path="res://res/tower_data.gd" id="1_5wfsn"]
+[ext_resource type="Texture2D" uid="uid://dqpxwpntknusu" path="res://assets/tex/canvas_escher.png" id="1_8rnjw"]
+[ext_resource type="PackedScene" uid="uid://b0eflv5gcqud4" path="res://scenes/escher_tower.tscn" id="2_3o1hc"]
+
+[resource]
+script = ExtResource("1_5wfsn")
+id = "escher"
+scene = ExtResource("2_3o1hc")
+icon = ExtResource("1_8rnjw")
+name = "Drawing Hands"
+author = "Escher"
+year = 1900
+description = "Hands draw each other"

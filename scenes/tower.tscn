@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvgwqwn3c2bi7"]
+
+[ext_resource type="Script" path="res://scenes/tower.gd" id="1_k0n0p"]
+[ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="2_ht00y"]
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_k0n0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ht00y")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true

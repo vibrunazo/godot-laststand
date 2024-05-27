@@ -1,6 +1,7 @@
 class_name PickTowerButton
 extends Button
 
+@export var tower_data: TowerData
 
 var click_tween: Tween
 func anim_click():

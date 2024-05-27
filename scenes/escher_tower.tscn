@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0eflv5gcqud4"]
+
+[ext_resource type="PackedScene" uid="uid://dvgwqwn3c2bi7" path="res://scenes/tower.tscn" id="1_chbax"]
+[ext_resource type="Texture2D" uid="uid://dqpxwpntknusu" path="res://assets/tex/canvas_escher.png" id="2_ufbv0"]
+
+[node name="EscherTower" instance=ExtResource("1_chbax")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ufbv0")

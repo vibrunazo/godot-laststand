@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/spawner.gd" id="1_1sidu"]
 [ext_resource type="PackedScene" uid="uid://d175g5ac1ab72" path="res://scenes/enemy.tscn" id="2_v8cd3"]
-[ext_resource type="Curve" uid="uid://ce1uk802jcouv" path="res://assets/spawn_per_difficulty_curve.tres" id="3_0lk6a"]
+[ext_resource type="Curve" uid="uid://ce1uk802jcouv" path="res://res/spawn_per_difficulty_curve.tres" id="3_yc6ud"]
 
 [node name="Spawner" type="Node"]
 script = ExtResource("1_1sidu")
 enemy_scene = ExtResource("2_v8cd3")
-difficulty_curve = ExtResource("3_0lk6a")
+difficulty_curve = ExtResource("3_yc6ud")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.1
