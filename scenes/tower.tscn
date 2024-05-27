@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvgwqwn3c2bi7"]
+[gd_scene load_steps=5 format=3 uid="uid://dvgwqwn3c2bi7"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_k0n0p"]
 [ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="2_ht00y"]
+[ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="2_jge4i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ixbmu"]
 radius = 400.0
 
 [node name="Tower" type="Node2D"]
 script = ExtResource("1_k0n0p")
+bullet_scene = ExtResource("2_jge4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

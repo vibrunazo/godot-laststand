@@ -3,6 +3,7 @@ class_name Tower
 extends Node2D
 
 @export var damage: float = 10
+@export var bullet_scene: PackedScene
 
 @onready var attack_timer = $AttackTimer
 
@@ -25,7 +26,21 @@ func try_attack():
 
 func attack():
 	var target: Enemy = aggro_list[0]
-	target.get_hit(damage)
+	#target.get_hit(damage)
+	spawn_bullet(target)
+
+func spawn_bullet(target: Enemy):
+	if not bullet_scene: return
+	var tower_layer = get_tree().get_first_node_in_group("tower_layer")
+	if not tower_layer: return
+	var bullet: Bullet = bullet_scene.instantiate() as Bullet
+	bullet.damage = damage
+	bullet.target = target
+	bullet.global_position = global_position
+	#tower_layer.add_child(bullet)
+	tower_layer.call_deferred("add_child", bullet)
+	
+	
 
 func update_pos_undermouse():
 	global_position = get_global_mouse_position()
@@ -52,8 +67,9 @@ func place():
 func _on_aggro_area_area_entered(area):
 	if not area.get_parent() is Enemy: return
 	aggro_list.append(area.get_parent())
-	attack_timer.start()
-	try_attack()
+	if attack_timer.is_stopped():
+		attack_timer.start()
+		try_attack()
 
 func _on_aggro_area_area_exited(area: Area2D):
 	var enemy := area.get_parent()

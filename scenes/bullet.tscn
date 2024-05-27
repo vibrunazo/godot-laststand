@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2w7xv82rkvts"]
+
+[ext_resource type="Texture2D" uid="uid://nmauftg3skvw" path="res://assets/tex/bird.png" id="1_ndsvc"]
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_sdbow"]
+[ext_resource type="Script" path="res://scenes/damage_box.gd" id="2_ccd8y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0bxy"]
+size = Vector2(90, 90)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_sdbow")
+
+[node name="DamageBox" type="Area2D" parent="."]
+script = ExtResource("2_ccd8y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
+shape = SubResource("RectangleShape2D_q0bxy")
+
+[node name="SpriteRoot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteRoot"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ndsvc")
+
+[connection signal="area_entered" from="DamageBox" to="DamageBox" method="_on_area_entered"]
