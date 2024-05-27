@@ -2,10 +2,13 @@
 class_name Tower
 extends Node2D
 
+@export var damage: float = 10
+
 @onready var attack_timer = $AttackTimer
 
 var is_being_placed: bool = true
 var aggro_list: Array[Enemy]
+
 
 func _ready():
 	anim_start()
@@ -21,7 +24,8 @@ func try_attack():
 	attack();
 
 func attack():
-	print('BOOM')
+	var target: Enemy = aggro_list[0]
+	target.get_hit(damage)
 
 func update_pos_undermouse():
 	global_position = get_global_mouse_position()
