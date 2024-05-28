@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://chw26tj4gq0od"]
+[gd_scene load_steps=4 format=3 uid="uid://chw26tj4gq0od"]
 
 [ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="1_y1laj"]
+[ext_resource type="Texture2D" uid="uid://lh7rcrmexikl" path="res://assets/tex/fish.png" id="2_cca71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkk1f"]
+size = Vector2(70, 70)
 
 [node name="FishBullet" instance=ExtResource("1_y1laj")]
 speed = 250.0
 destroy_on_hit = false
+
+[node name="CollisionShape2D" parent="DamageBox" index="0"]
+shape = SubResource("RectangleShape2D_wkk1f")
+
+[node name="Sprite2D" parent="SpriteRoot" index="0"]
+texture = ExtResource("2_cca71")

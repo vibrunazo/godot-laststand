@@ -7,6 +7,7 @@ extends Node2D
 @export var destroy_on_hit: bool = true
 
 @onready var damage_box: DamageBox = $DamageBox
+@onready var sprite_root = $SpriteRoot
 
 var target_pos: Vector2
 var ignore_id: String
@@ -21,6 +22,8 @@ func _ready():
 	damage_box.hit.connect(_on_damage_box_hit)
 	if is_instance_valid(target):
 		target_pos = target.global_position
+	if target_pos.x < global_position.x:
+		sprite_root.scale.y = -1
 
 var last_distance: float = 10000
 func _process(delta):

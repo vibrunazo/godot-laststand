@@ -7,6 +7,7 @@
 size = Vector2(48, 79)
 
 [node name="Enemy" type="PathFollow2D"]
+rotates = false
 loop = false
 script = ExtResource("1_4wxmt")
 

@@ -13,6 +13,7 @@ extends PathFollow2D
 var SPEED: = 100.0
 var health: float = 50
 var ignore_ids: Array[String]
+var last_pos: Vector2 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,8 @@ func _ready():
 	h_offset += randf_range(-offset_max, offset_max)
 	v_offset += randf_range(-offset_max, offset_max)
 	health = max_health
+	last_pos = global_position
+	
 	
 func get_hit(damage: float):
 	health -= damage
@@ -49,10 +52,10 @@ func get_target_pos() -> Vector2:
 
 func _physics_process(delta):
 	progress += delta * SPEED
+	last_pos = global_position
 
 func _process(_delta):
-	sprite.global_rotation_degrees = 0
-	if abs(rotation_degrees) > 90:
+	if global_position.x < last_pos.x:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
