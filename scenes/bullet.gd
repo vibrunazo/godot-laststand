@@ -10,8 +10,18 @@ extends Node2D
 @onready var sprite_root = $SpriteRoot
 
 var target_pos: Vector2
+var direction: Vector2
+var last_direction: Vector2
+var last_distance: float = 10000
 var ignore_id: String
 var id: int
+var is_ready: bool = true
+var what_to_follow: FOLLOW = FOLLOW.TARGET
+enum FOLLOW {
+	TARGET, ## Follow the target Enemy
+	POS, ## Follow the last known target position
+	DIR ## Keep going in current direction
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,19 +35,52 @@ func _ready():
 	if target_pos.x < global_position.x:
 		sprite_root.scale.y = -1
 
-var last_distance: float = 10000
-func _process(delta):
-	if is_instance_valid(target): 
-		target_pos = target.global_position
-		if target.has_method("get_target_pos"):
-			target_pos = target.get_target_pos()
+func _physics_process(delta):
+	what_to_follow = pick_what_to_follow()
+	match what_to_follow as FOLLOW:
+		FOLLOW.TARGET:
+			target_pos = target.global_position
+			if target.has_method("get_target_pos"):
+				target_pos = target.get_target_pos()
+			follow_target_pos(delta)
+		FOLLOW.POS:
+			follow_target_pos(delta)
+		FOLLOW.DIR:
+			move_in_last_dir(delta)
+	
+
+func follow_target_pos(delta: float):
 	look_at(target_pos)
-	var direction = Vector2.from_angle(rotation)
+	direction = Vector2.from_angle(rotation)
 	global_position += direction * speed * delta
 	var distance := (target_pos - global_position).length()
 	if not target and distance >= last_distance:
-		queue_free()
+		global_position -= direction * speed * delta
+		direction = last_direction
+		rotation = last_direction.angle()
+		global_position += direction * speed * delta
+		whiff()
+		return
 	last_distance = distance
+	last_direction = direction
+
+func move_in_last_dir(delta):
+	global_position += direction * speed * delta
+
+func pick_what_to_follow() -> FOLLOW:
+	if not is_ready: return FOLLOW.DIR
+	if is_instance_valid(target):
+		return FOLLOW.TARGET
+	return FOLLOW.POS
+
+## Attack missed, play whiff anim
+func whiff():
+	is_ready = false
+	damage_box.is_ready = false
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.2)
+	tween.tween_callback(queue_free)
+	#queue_free()
 
 func _on_damage_box_hit():
 	if destroy_on_hit:

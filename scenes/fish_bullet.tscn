@@ -7,7 +7,7 @@
 size = Vector2(70, 70)
 
 [node name="FishBullet" instance=ExtResource("1_y1laj")]
-speed = 250.0
+speed = 300.0
 destroy_on_hit = false
 
 [node name="CollisionShape2D" parent="DamageBox" index="0"]
