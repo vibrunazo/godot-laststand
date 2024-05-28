@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfdtf71tl7nkb"]
+
+[ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="1_2wjj0"]
+[ext_resource type="Script" path="res://scenes/monalisa_bullet.gd" id="2_abua1"]
+[ext_resource type="Texture2D" uid="uid://c345yq7ghj4mo" path="res://assets/tex/monalisa_bullet.png" id="2_dq7lt"]
+
+[node name="MonalisaBullet" instance=ExtResource("1_2wjj0")]
+script = ExtResource("2_abua1")
+backing_speed = 200.0
+speed = 700.0
+destroy_on_hit = false
+
+[node name="Sprite2D" parent="SpriteRoot" index="0"]
+texture = ExtResource("2_dq7lt")

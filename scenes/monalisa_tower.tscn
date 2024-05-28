@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqsu0xix1icau"]
+
+[ext_resource type="PackedScene" uid="uid://dvgwqwn3c2bi7" path="res://scenes/tower.tscn" id="1_3gebd"]
+[ext_resource type="Texture2D" uid="uid://dmhb0k2ut4cfp" path="res://assets/tex/canvas_monalisa.png" id="2_qvc45"]
+[ext_resource type="PackedScene" uid="uid://cfdtf71tl7nkb" path="res://scenes/monalisa_bullet.tscn" id="2_xmlft"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6mqov"]
+radius = 200.0
+
+[node name="MonalisaTower" instance=ExtResource("1_3gebd")]
+damage = 500.0
+bullet_scene = ExtResource("2_xmlft")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qvc45")
+
+[node name="AttackTimer" parent="." index="1"]
+wait_time = 5.0
+
+[node name="CollisionShape2D" parent="AggroArea" index="0"]
+shape = SubResource("CircleShape2D_6mqov")

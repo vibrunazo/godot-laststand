@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxnm5x3mq25u3"]
+[gd_scene load_steps=9 format=3 uid="uid://cxnm5x3mq25u3"]
 
 [ext_resource type="Script" path="res://scenes/pick_tower_menu.gd" id="1_ms78v"]
 [ext_resource type="PackedScene" uid="uid://ckuw14smlun2o" path="res://scenes/pick_tower_button.tscn" id="2_g6gme"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bsu6cmd35jqwi" path="res://res/liberty.tower.tres" id="4_flvmm"]
 [ext_resource type="Texture2D" uid="uid://dmhb0k2ut4cfp" path="res://assets/tex/canvas_monalisa.png" id="4_g4wxc"]
 [ext_resource type="Texture2D" uid="uid://dqpxwpntknusu" path="res://assets/tex/canvas_escher.png" id="5_t1cue"]
+[ext_resource type="Resource" uid="uid://brtu53htofc5u" path="res://res/monalisa.tower.tres" id="6_k7a7v"]
 [ext_resource type="Resource" uid="uid://dovvmi4xjevxx" path="res://res/escher.tower.tres" id="6_t3g1e"]
 
 [node name="PickTowerMenu" type="Control"]
@@ -36,6 +37,7 @@ offset_right = -298.0
 offset_bottom = 106.0
 pivot_offset = Vector2(640, -64)
 icon = ExtResource("4_g4wxc")
+tower_data = ExtResource("6_k7a7v")
 
 [node name="PickTowerButton3" parent="." instance=ExtResource("2_g6gme")]
 layout_mode = 1

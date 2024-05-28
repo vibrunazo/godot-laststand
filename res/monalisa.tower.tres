@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TowerData" load_steps=3 format=3 uid="uid://brtu53htofc5u"]
+
+[ext_resource type="PackedScene" uid="uid://cqsu0xix1icau" path="res://scenes/monalisa_tower.tscn" id="1_7fsci"]
+[ext_resource type="Script" path="res://res/tower_data.gd" id="3_tnqqt"]
+
+[resource]
+script = ExtResource("3_tnqqt")
+id = "monalisa"
+scene = ExtResource("1_7fsci")
+name = "Liberty Leading the People"
+author = "Eugène Delacroix"
+year = 1830
+description = "Celebration of the French Revolution of 1830."

@@ -5,7 +5,7 @@ extends Area2D
 @export var ignore_id: String
 
 var is_ready: bool = true
-signal hit
+signal hit(target: Enemy)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,4 +20,4 @@ func _on_area_entered(area: Area2D):
 	enemy.get_hit(damage)
 	if not ignore_id.is_empty():
 		enemy.ignore_ids.append(ignore_id)
-	hit.emit()
+	hit.emit(enemy)

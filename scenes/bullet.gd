@@ -15,12 +15,14 @@ var last_direction: Vector2
 var last_distance: float = 10000
 var ignore_id: String
 var id: int
+## Whether I'm ready to hit a target
 var is_ready: bool = true
 var what_to_follow: FOLLOW = FOLLOW.TARGET
 enum FOLLOW {
 	TARGET, ## Follow the target Enemy
 	POS, ## Follow the last known target position
-	DIR ## Keep going in current direction
+	DIR, ## Keep going in current direction
+	NONE ## Do not follow
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -83,7 +85,7 @@ func whiff():
 	tween.tween_callback(queue_free)
 	#queue_free()
 
-func _on_damage_box_hit():
+func _on_damage_box_hit(_target: Enemy):
 	if destroy_on_hit:
 		queue_free()
 
