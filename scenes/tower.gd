@@ -2,7 +2,7 @@
 class_name Tower
 extends Node2D
 
-@export var damage: float = 10
+@export var damage: float = 30
 @export var bullet_scene: PackedScene
 
 @onready var attack_timer = $AttackTimer

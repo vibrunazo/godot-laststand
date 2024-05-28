@@ -8,6 +8,7 @@ extends PathFollow2D
 @export var max_health: float = 50.0
 
 @onready var sprite = $Sprite
+@onready var target_pos = $TargetPos
 
 var SPEED: = 100.0
 var health: float = 50
@@ -24,6 +25,11 @@ func get_hit(damage: float):
 	health = clamp(health, 0, max_health)
 	if health == 0:
 		queue_free()
+
+## Returns the global position bullets will aim for
+func get_target_pos() -> Vector2:
+	if not is_instance_valid(target_pos): return global_position
+	return target_pos.global_position
 		
 
 

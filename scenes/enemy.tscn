@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="2_4xa3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5ry1"]
-size = Vector2(128, 128)
+size = Vector2(48, 79)
 
 [node name="Enemy" type="PathFollow2D"]
 loop = false
@@ -18,5 +18,8 @@ offset = Vector2(0, -64)
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, -64)
+position = Vector2(0, -41.5)
 shape = SubResource("RectangleShape2D_r5ry1")
+
+[node name="TargetPos" type="Node2D" parent="."]
+position = Vector2(0, -30)
