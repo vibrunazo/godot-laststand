@@ -18,8 +18,8 @@ offset = Vector2(0, -64)
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, -41.5)
+position = Vector2(0, -56.5)
 shape = SubResource("RectangleShape2D_r5ry1")
 
 [node name="TargetPos" type="Node2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(0, -56)

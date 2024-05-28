@@ -2,18 +2,16 @@ class_name Bullet
 extends Node2D
 
 @export var damage: float = 10
-@export var speed: float = 350
+@export var speed: float = 150
 @export var target: Enemy
+@export var destroy_on_hit: bool = true
 
 @onready var damage_box: DamageBox = $DamageBox
 
 var target_pos: Vector2
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#damage_box = $DamageBox
-	#await get_tree().process_frame
 	damage_box.damage = damage
 	damage_box.hit.connect(_on_damage_box_hit)
 	if is_instance_valid(target):
@@ -34,7 +32,9 @@ func _process(delta):
 	last_distance = distance
 
 func _on_damage_box_hit():
-	queue_free()
+	print('bullet hit')
+	if destroy_on_hit:
+		queue_free()
 
 
 func _on_damage_box_area_entered(area: Area2D):

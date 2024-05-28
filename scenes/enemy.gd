@@ -7,8 +7,8 @@ extends PathFollow2D
 
 @export var max_health: float = 50.0
 
-@onready var sprite = $Sprite
-@onready var target_pos = $TargetPos
+@onready var sprite: Sprite2D = $Sprite
+@onready var target_pos: Node2D = $TargetPos
 
 var SPEED: = 100.0
 var health: float = 50
@@ -25,6 +25,19 @@ func get_hit(damage: float):
 	health = clamp(health, 0, max_health)
 	if health == 0:
 		queue_free()
+	else:
+		anim_gethit()
+
+func anim_gethit():
+	var ini_pos: Vector2 = sprite.position
+	modulate = Color.RED
+	var tween: Tween = create_tween()
+	tween.tween_property(sprite, "position", ini_pos + Vector2.LEFT * 16, 0.02)
+	tween.tween_property(sprite, "position", ini_pos + Vector2.RIGHT * 10, 0.02)
+	tween.tween_property(sprite, "position", ini_pos + Vector2.LEFT * 10, 0.02)
+	tween.tween_property(sprite, "position", ini_pos + Vector2.RIGHT * 10, 0.02)
+	tween.tween_property(sprite, "position", ini_pos, 0.05)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.075)
 
 ## Returns the global position bullets will aim for
 func get_target_pos() -> Vector2:

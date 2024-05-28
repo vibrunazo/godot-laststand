@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chw26tj4gq0od"]
+
+[ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="1_y1laj"]
+
+[node name="FishBullet" instance=ExtResource("1_y1laj")]
+speed = 250.0
+destroy_on_hit = false

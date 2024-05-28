@@ -1,5 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw3kugw1shyi1"]
+[gd_scene load_steps=4 format=3 uid="uid://bw3kugw1shyi1"]
 
 [ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="1_eaign"]
+[ext_resource type="Script" path="res://scenes/escher_bullet.gd" id="2_qdi2h"]
+[ext_resource type="PackedScene" uid="uid://chw26tj4gq0od" path="res://scenes/fish_bullet.tscn" id="3_gvl55"]
 
 [node name="EscherBullet" instance=ExtResource("1_eaign")]
+script = ExtResource("2_qdi2h")
+secondary_bullet_scene = ExtResource("3_gvl55")
+secondary_damage = 5.0
+damage = 5.0
+speed = 350.0
