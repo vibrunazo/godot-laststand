@@ -55,6 +55,7 @@ func follow_target_pos(delta: float):
 	global_position += direction * speed * delta
 	var distance := (target_pos - global_position).length()
 	if not target and distance >= last_distance:
+		# HACK: more elegant solution might be to predict instead of undo
 		global_position -= direction * speed * delta
 		direction = last_direction
 		rotation = last_direction.angle()

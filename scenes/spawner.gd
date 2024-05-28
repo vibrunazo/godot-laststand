@@ -8,16 +8,21 @@ extends Node
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
+@export var max_enemies: int = 100
 
 @onready var time_between_spawns: int = initial_time_between_spawns
 var last_spawn_time: int = 0
 var difficulty: int = 0
+var num_spawned: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	
 func try_spawn_enemy():
+	if num_spawned >= max_enemies and max_enemies > 0:
+		queue_free()
+		return
 	if Time.get_ticks_msec() - last_spawn_time >= time_between_spawns:
 		spawn_enemy()
 	update_difficulty()
@@ -27,6 +32,7 @@ func spawn_enemy():
 	last_spawn_time = Time.get_ticks_msec()
 	var new_enemy: Enemy = enemy_scene.instantiate() as Enemy
 	path.add_child(new_enemy)
+	num_spawned += 1
 
 func update_difficulty():
 	var time := Time.get_ticks_msec() / 1000.0

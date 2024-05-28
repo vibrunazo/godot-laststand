@@ -48,14 +48,15 @@ func get_target_pos() -> Vector2:
 	if not is_instance_valid(target_pos): return global_position
 	return target_pos.global_position
 		
-
+func update_sprite_flip():
+	var direction: Vector2 = global_position - last_pos
+	var angle: float = direction.angle() * 180 / PI
+	if abs(angle) > 110:
+		sprite.flip_h = true
+	elif abs(angle) < 70:
+		sprite.flip_h = false
 
 func _physics_process(delta):
 	progress += delta * SPEED
+	update_sprite_flip()
 	last_pos = global_position
-
-func _process(_delta):
-	if global_position.x < last_pos.x:
-		sprite.flip_h = true
-	else:
-		sprite.flip_h = false
