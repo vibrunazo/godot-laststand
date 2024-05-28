@@ -7,6 +7,5 @@
 [node name="EscherBullet" instance=ExtResource("1_eaign")]
 script = ExtResource("2_qdi2h")
 secondary_bullet_scene = ExtResource("3_gvl55")
-secondary_damage = 5.0
-damage = 5.0
+secondary_damage = 10.0
 speed = 350.0

@@ -12,6 +12,7 @@ extends PathFollow2D
 
 var SPEED: = 100.0
 var health: float = 50
+var ignore_ids: Array[String]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

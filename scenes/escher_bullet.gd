@@ -19,6 +19,7 @@ func spawn_bullet(direction: Vector2):
 	bullet.damage = secondary_damage
 	bullet.global_position = global_position
 	bullet.target_pos = global_position + direction * 500
+	bullet.ignore_id = "%d"%id
 	tower_layer.call_deferred("add_child", bullet)
 	
 	

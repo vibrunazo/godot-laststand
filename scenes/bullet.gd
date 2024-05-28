@@ -9,10 +9,15 @@ extends Node2D
 @onready var damage_box: DamageBox = $DamageBox
 
 var target_pos: Vector2
+var ignore_id: String
+var id: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	id = Bullet.get_id()
 	damage_box.damage = damage
+	if ignore_id.is_empty(): damage_box.ignore_id = "%d"%id
+	else: damage_box.ignore_id = ignore_id
 	damage_box.hit.connect(_on_damage_box_hit)
 	if is_instance_valid(target):
 		target_pos = target.global_position
@@ -32,11 +37,14 @@ func _process(delta):
 	last_distance = distance
 
 func _on_damage_box_hit():
-	print('bullet hit')
 	if destroy_on_hit:
 		queue_free()
 
 
 func _on_damage_box_area_entered(area: Area2D):
 	if not area.get_parent() is Enemy: return
-	
+
+static var last_id: int = 0
+static func get_id() -> int:
+	last_id += 1
+	return last_id
