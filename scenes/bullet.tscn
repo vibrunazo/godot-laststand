@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/bullet.gd" id="1_sdbow"]
 [ext_resource type="Script" path="res://scenes/damage_box.gd" id="2_ccd8y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0bxy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pprs"]
 size = Vector2(50, 50)
 
 [node name="Bullet" type="Node2D"]
@@ -14,7 +14,7 @@ script = ExtResource("1_sdbow")
 script = ExtResource("2_ccd8y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
-shape = SubResource("RectangleShape2D_q0bxy")
+shape = SubResource("RectangleShape2D_6pprs")
 
 [node name="SpriteRoot" type="Node2D" parent="."]
 

@@ -8,7 +8,7 @@ extends Node
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 100
+@export var max_enemies: int = 500
 
 @onready var time_between_spawns: int = initial_time_between_spawns
 var last_spawn_time: int = 0

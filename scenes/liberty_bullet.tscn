@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://lsvarokp3y85"]
+
+[ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="1_8vbov"]
+[ext_resource type="Texture2D" uid="uid://bsf0q1qjede6s" path="res://assets/tex/liberty_bullet.png" id="2_ak2m5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3bp7"]
+size = Vector2(30, 30)
+
+[node name="LibertyBullet" instance=ExtResource("1_8vbov")]
+speed = 1200.0
+
+[node name="CollisionShape2D" parent="DamageBox" index="0"]
+shape = SubResource("RectangleShape2D_v3bp7")
+
+[node name="Sprite2D" parent="SpriteRoot" index="0"]
+texture = ExtResource("2_ak2m5")

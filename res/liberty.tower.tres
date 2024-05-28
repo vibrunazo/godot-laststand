@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TowerData" load_steps=4 format=3 uid="uid://bsu6cmd35jqwi"]
+
+[ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="1_vu8e8"]
+[ext_resource type="PackedScene" uid="uid://g8cudfwopoas" path="res://scenes/liberty_tower.tscn" id="2_uq6mu"]
+[ext_resource type="Script" path="res://res/tower_data.gd" id="3_qkvge"]
+
+[resource]
+script = ExtResource("3_qkvge")
+id = "liberty"
+scene = ExtResource("2_uq6mu")
+icon = ExtResource("1_vu8e8")
+name = "Liberty Leading the People"
+author = "Eugène Delacroix"
+year = 1830
+description = "Celebration of the French Revolution of 1830."

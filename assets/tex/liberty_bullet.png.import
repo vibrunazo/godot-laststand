@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfpsi6morrrxa"
-path="res://.godot/imported/canvas_liberty_2.png-bb271868677f5ff4f3dcf6796a43dd31.ctex"
+uid="uid://bsf0q1qjede6s"
+path="res://.godot/imported/liberty_bullet.png-a88d88be05aa7da3c057639bafdc0947.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tex/canvas_liberty_2.png"
-dest_files=["res://.godot/imported/canvas_liberty_2.png-bb271868677f5ff4f3dcf6796a43dd31.ctex"]
+source_file="res://assets/tex/liberty_bullet.png"
+dest_files=["res://.godot/imported/liberty_bullet.png-a88d88be05aa7da3c057639bafdc0947.ctex"]
 
 [params]
 

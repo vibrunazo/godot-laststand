@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://g8cudfwopoas"]
+
+[ext_resource type="PackedScene" uid="uid://dvgwqwn3c2bi7" path="res://scenes/tower.tscn" id="1_xh7bg"]
+[ext_resource type="PackedScene" uid="uid://lsvarokp3y85" path="res://scenes/liberty_bullet.tscn" id="2_4ords"]
+[ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="2_5qtpv"]
+
+[node name="LibertyTower" instance=ExtResource("1_xh7bg")]
+damage = 8.0
+bullet_scene = ExtResource("2_4ords")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_5qtpv")
+
+[node name="AttackTimer" parent="." index="1"]
+wait_time = 0.6
