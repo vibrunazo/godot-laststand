@@ -1,8 +1,8 @@
 class_name Enemy
 extends PathFollow2D
 
-@export var speed_min: float = 1000.0
-@export var speed_max: float = 2000.0
+@export var speed_min: float = 100.0
+@export var speed_max: float = 200.0
 @export var offset_max: float = 10.0
 
 @export var max_health: float = 50.0

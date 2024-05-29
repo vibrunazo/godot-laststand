@@ -17,7 +17,7 @@ var num_spawned: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Events.game_over.connect(_on_game_over)
 	
 func try_spawn_enemy():
 	if num_spawned >= max_enemies and max_enemies > 0:
@@ -45,3 +45,6 @@ func update_difficulty():
 func _on_spawn_timer_timeout():
 	if not path: return
 	try_spawn_enemy()
+
+func _on_game_over():
+	queue_free()

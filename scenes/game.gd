@@ -12,12 +12,18 @@ extends Node2D
 var is_selecting_tower: bool = false
 var tower_menu_ref: PickTowerMenu
 var tower_being_placed: Tower
-var health: float = 20
+var is_ready: bool = false
 
 func _ready():
 	print('game started')
-	health = initial_health
+	GameState.max_health = initial_health
+	GameState.health = initial_health
 	bind_signals()
+	start_game()
+
+func start_game():
+	is_ready = true
+	Events.game_start.emit()
 
 func bind_signals():
 	artstand.clicked.connect(_on_artstand_clicked)
@@ -56,6 +62,11 @@ func spawn_tower(tower_data: TowerData):
 	tower_layer.add_child(tower)
 	tower_being_placed = tower
 
+func game_over():
+	is_ready = false
+	Events.game_over.emit()
+	
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		if is_selecting_tower:
@@ -81,6 +92,14 @@ func _on_tower_button_pressed(button: PickTowerButton):
 	spawn_tower(tower_data)
 
 func _on_goal_damaged(damage: float):
-	health -= damage
-	health = clamp(health, 0, initial_health)
+	if not is_instance_valid(artstand) or not is_ready:
+		return
+	var new_health: float = GameState.health
+	new_health -= damage
+	new_health = clamp(new_health, 0, initial_health)
+	GameState.health = new_health
+	if GameState.health == 0:
+		artstand.die()
+		game_over()
+		return
 	artstand.get_hit()

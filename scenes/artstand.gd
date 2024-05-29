@@ -3,11 +3,12 @@ extends Sprite2D
 
 signal clicked
 @onready var sprite: Sprite2D = $Canvas
+@onready var health_bar = %HealthBar
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GameState.health_changed.connect(_on_health_changed)
 	
 	
 var click_tween: Tween
@@ -23,6 +24,13 @@ func anim_click():
 func get_hit():
 	anim_gethit()
 
+func die():
+	queue_free()
+
+func update_healthbar():
+	health_bar.max_value = GameState.max_health
+	health_bar.value = GameState.health
+
 func anim_gethit():
 	var ini_pos: Vector2 = position
 	modulate = Color.RED
@@ -37,3 +45,7 @@ func anim_gethit():
 func _on_button_down():
 	clicked.emit()
 	anim_click()
+
+func _on_health_changed(new_value: float):
+	print('health changed on artstand to %s' % [new_value])
+	update_healthbar()
