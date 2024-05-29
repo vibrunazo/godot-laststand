@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvype7ea50074"]
+
+[ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="1_jaty8"]
+[ext_resource type="Script" path="res://scenes/fullscreen_label.gd" id="2_gymef"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_jaty8")
+
+[node name="FullscreenLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -349.0
+offset_top = -142.0
+offset_right = -41.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+text = "Press [color=yellow]F[/color] for Fullscreen"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("2_gymef")

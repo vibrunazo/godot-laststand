@@ -16,8 +16,10 @@ func _unhandled_key_input(event):
 func toggle_fullscreen():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN or DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		UI.fullscreen_toggle.emit(false)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		UI.fullscreen_toggle.emit(true)
 
 func toggle_debug_speed():
 	if Engine.time_scale != 1:
