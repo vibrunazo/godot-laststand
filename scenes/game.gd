@@ -2,6 +2,7 @@ class_name Game
 extends Node2D
 
 @export var pick_tower_scene: PackedScene
+@export var initial_health: float = 20
 
 @onready var artstand: ArtStand = %Artstand
 @onready var game_cam: GameCam = $GameCam
@@ -11,13 +12,16 @@ extends Node2D
 var is_selecting_tower: bool = false
 var tower_menu_ref: PickTowerMenu
 var tower_being_placed: Tower
+var health: float = 20
 
 func _ready():
 	print('game started')
+	health = initial_health
 	bind_signals()
 
 func bind_signals():
 	artstand.clicked.connect(_on_artstand_clicked)
+	Events.goal_damaged.connect(_on_goal_damaged)
 	
 func show_pick_tower_menu():
 	if not is_selecting_tower: return
@@ -75,3 +79,8 @@ func _on_tower_button_pressed(button: PickTowerButton):
 	_on_artstand_clicked()
 	await get_tree().create_timer(0.2).timeout
 	spawn_tower(tower_data)
+
+func _on_goal_damaged(damage: float):
+	health -= damage
+	health = clamp(health, 0, initial_health)
+	artstand.get_hit()

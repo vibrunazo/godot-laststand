@@ -22,7 +22,6 @@ func _physics_process(delta):
 	last_distance = distance
 
 func eat():
-	print('yum')
 	queue_free()
 	
 
@@ -30,9 +29,9 @@ func pick_what_to_follow() -> FOLLOW:
 	if not is_grabbing: return super()
 	return FOLLOW.NONE
 #
-func _on_damage_box_hit(_target: Enemy):
+func _on_damage_box_hit(_target_enemy: Enemy):
 	is_grabbing = true
 	is_ready = false
 	damage_box.is_ready = false
 	last_distance = 10000
-	super(_target)
+	super(_target_enemy)

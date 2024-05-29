@@ -85,7 +85,7 @@ func whiff():
 	tween.tween_callback(queue_free)
 	#queue_free()
 
-func _on_damage_box_hit(_target: Enemy):
+func _on_damage_box_hit(_target_enemy: Enemy):
 	if destroy_on_hit:
 		queue_free()
 

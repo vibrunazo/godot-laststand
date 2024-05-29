@@ -3,12 +3,12 @@ extends Bullet
 @export var secondary_bullet_scene: PackedScene
 @export var secondary_damage: float = 20
 
-func _on_damage_box_hit(_target: Enemy):
+func _on_damage_box_hit(_target_enemy: Enemy):
 	spawn_bullet(Vector2.LEFT)
 	spawn_bullet(Vector2.RIGHT)
 	spawn_bullet(Vector2.UP)
 	spawn_bullet(Vector2.DOWN)
-	super(target)
+	super(_target_enemy)
 
 
 func spawn_bullet(bullet_direction: Vector2):

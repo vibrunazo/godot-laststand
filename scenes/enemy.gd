@@ -1,8 +1,8 @@
 class_name Enemy
 extends PathFollow2D
 
-@export var speed_min: float = 100.0
-@export var speed_max: float = 200.0
+@export var speed_min: float = 1000.0
+@export var speed_max: float = 2000.0
 @export var offset_max: float = 10.0
 
 @export var max_health: float = 50.0
@@ -14,6 +14,7 @@ var SPEED: = 100.0
 var health: float = 50
 var ignore_ids: Array[String]
 var last_pos: Vector2 
+var is_ready: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -56,7 +57,15 @@ func update_sprite_flip():
 	elif abs(angle) < 70:
 		sprite.flip_h = false
 
+func reach_end():
+	is_ready = false
+	Events.goal_damaged.emit(1)
+	queue_free()
+
 func _physics_process(delta):
 	progress += delta * SPEED
+	if progress_ratio >= 1:
+		reach_end()
+		return
 	update_sprite_flip()
 	last_pos = global_position
