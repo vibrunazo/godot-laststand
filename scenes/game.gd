@@ -65,6 +65,7 @@ func spawn_tower(tower_data: TowerData):
 func game_over():
 	is_ready = false
 	Events.game_over.emit()
+	GameState.show_game_over()
 	
 
 func _unhandled_input(event):
