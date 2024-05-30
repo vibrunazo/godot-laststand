@@ -3,6 +3,7 @@ extends Node2D
 
 @export var pick_tower_scene: PackedScene
 @export var initial_health: float = 20
+@export var initial_money: float = 200
 
 @onready var artstand: ArtStand = %Artstand
 @onready var game_cam: GameCam = $GameCam
@@ -17,12 +18,13 @@ var is_ready: bool = false
 
 func _ready():
 	print('game started')
-	GameState.max_health = initial_health
-	GameState.health = initial_health
 	bind_signals()
 	start_game()
 
 func start_game():
+	GameState.max_health = initial_health
+	GameState.health = initial_health
+	GameState.money = initial_money
 	is_ready = true
 	GameState.is_playing = true
 	Events.game_start.emit()

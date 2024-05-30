@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvype7ea50074"]
+[gd_scene load_steps=6 format=3 uid="uid://bvype7ea50074"]
 
 [ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="1_jaty8"]
 [ext_resource type="Script" path="res://scenes/fullscreen_label.gd" id="2_gymef"]
+[ext_resource type="Script" path="res://scenes/label_money.gd" id="3_b1uj4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j6syf"]
+font_size = 50
+font_color = Color(0.121623, 0.62, 0.0558, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6r1em"]
+font_size = 50
+font_color = Color(0.121623, 0.62, 0.0558, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -33,3 +48,26 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("2_gymef")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -209.0
+offset_top = 108.0
+offset_right = -89.0
+offset_bottom = 177.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "$"
+label_settings = SubResource("LabelSettings_j6syf")
+
+[node name="LabelMoney" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100"
+label_settings = SubResource("LabelSettings_6r1em")
+script = ExtResource("3_b1uj4")

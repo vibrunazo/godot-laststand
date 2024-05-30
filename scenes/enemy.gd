@@ -4,8 +4,9 @@ extends PathFollow2D
 @export var speed_min: float = 100.0
 @export var speed_max: float = 200.0
 @export var offset_max: float = 10.0
-
 @export var max_health: float = 50.0
+## How much money I give on death
+@export var money: float = 15.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var target_pos: Node2D = $TargetPos
@@ -42,6 +43,7 @@ func get_hit(damage: float):
 
 func die():
 	is_ready = false
+	GameState.money += money
 	killed.emit()
 	queue_free()
 
