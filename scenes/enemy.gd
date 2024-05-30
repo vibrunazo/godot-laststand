@@ -16,6 +16,8 @@ var ignore_ids: Array[String]
 var last_pos: Vector2 
 var is_ready: bool = true
 
+signal killed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SPEED = randf_range(speed_min, speed_max)
@@ -29,9 +31,13 @@ func get_hit(damage: float):
 	health -= damage
 	health = clamp(health, 0, max_health)
 	if health == 0:
-		queue_free()
+		die()
 	else:
 		anim_gethit()
+
+func die():
+	killed.emit()
+	queue_free()
 
 func anim_gethit():
 	var ini_pos: Vector2 = sprite.position
@@ -60,6 +66,7 @@ func update_sprite_flip():
 func reach_end():
 	is_ready = false
 	Events.goal_damaged.emit(1)
+	killed.emit()
 	queue_free()
 
 func _physics_process(delta):

@@ -8,6 +8,7 @@ extends Node2D
 @onready var game_cam: GameCam = $GameCam
 @onready var ui_layer = $UILayer
 @onready var tower_layer = $TowerLayer
+@onready var spawner: Spawner = $Spawner
 
 var is_selecting_tower: bool = false
 var tower_menu_ref: PickTowerMenu
@@ -23,11 +24,13 @@ func _ready():
 
 func start_game():
 	is_ready = true
+	GameState.is_playing = true
 	Events.game_start.emit()
 
 func bind_signals():
 	artstand.clicked.connect(_on_artstand_clicked)
 	Events.goal_damaged.connect(_on_goal_damaged)
+	spawner.spawner_defeated.connect(_on_spawner_defeated)
 	
 func show_pick_tower_menu():
 	if not is_selecting_tower: return
@@ -64,9 +67,16 @@ func spawn_tower(tower_data: TowerData):
 
 func game_over():
 	is_ready = false
-	Events.game_over.emit()
+	if is_selecting_tower: _on_artstand_clicked()
+	GameState.is_playing = false
 	UI.show_game_over()
-	
+
+func win():
+	if is_selecting_tower: _on_artstand_clicked()
+	is_ready = false
+	GameState.is_playing = false
+	await get_tree().create_timer(2).timeout
+	UI.show_win()
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
@@ -104,3 +114,8 @@ func _on_goal_damaged(damage: float):
 		game_over()
 		return
 	artstand.get_hit()
+
+## when all enemies spawned by a spawner have been defeated
+func _on_spawner_defeated(_spawner):
+	if GameState.health > 0 and GameState.is_playing:
+		win()

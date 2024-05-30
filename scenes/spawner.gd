@@ -1,3 +1,4 @@
+class_name Spawner
 extends Node
 
 @export var path: Path2D
@@ -8,14 +9,18 @@ extends Node
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 500
+@export var max_enemies: int = 50
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var time_between_spawns: float = initial_time_between_spawns
 
+## emitted when all spawned enemies have been killed
+signal spawner_defeated(spawner: Spawner)
+
 var last_spawn_time: float = 0
 var difficulty: int = 0
 var num_spawned: int = 0
+var num_killed: int = 0
 ## Time since this spawner started in seconds
 var time: float = 0
 
@@ -25,7 +30,6 @@ func _ready():
 	
 func try_spawn_enemy():
 	if num_spawned >= max_enemies and max_enemies > 0:
-		queue_free()
 		return
 	if time - last_spawn_time >= time_between_spawns:
 		spawn_enemy()
@@ -35,6 +39,7 @@ func spawn_enemy():
 	if not enemy_scene: return
 	last_spawn_time = time
 	var new_enemy: Enemy = enemy_scene.instantiate() as Enemy
+	new_enemy.killed.connect(_on_enemy_killed)
 	path.add_child(new_enemy)
 	num_spawned += 1
 
@@ -53,3 +58,9 @@ func _on_spawn_timer_timeout():
 
 func _on_game_over():
 	queue_free()
+
+func _on_enemy_killed():
+	num_killed += 1
+	if num_killed >= max_enemies and max_enemies > 0:
+		spawner_defeated.emit(self)
+		queue_free()

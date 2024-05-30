@@ -1,5 +1,6 @@
 extends Node
 
+var is_playing: bool = false
 
 var max_health: float = 100
 var health: float = 100:

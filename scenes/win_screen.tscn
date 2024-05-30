@@ -1,21 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://cx5ec26l7tmr0"]
+[gd_scene load_steps=8 format=3 uid="uid://cmr5hqdydgkw"]
 
-[ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="1_ucufe"]
-[ext_resource type="Script" path="res://scenes/game_over_screen.gd" id="1_wjuqh"]
-[ext_resource type="LabelSettings" uid="uid://cdkx488yjqrlo" path="res://res/subtitle.label.tres" id="3_4uh8k"]
-[ext_resource type="Script" path="res://scenes/quit_button.gd" id="3_fbte7"]
-[ext_resource type="Script" path="res://scenes/retry_button.gd" id="3_fdk88"]
+[ext_resource type="Script" path="res://scenes/game_over_screen.gd" id="1_0jiek"]
+[ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="2_c4ivh"]
+[ext_resource type="Script" path="res://scenes/retry_button.gd" id="3_twak3"]
+[ext_resource type="LabelSettings" uid="uid://cdkx488yjqrlo" path="res://res/subtitle.label.tres" id="3_vkh2o"]
+[ext_resource type="Script" path="res://scenes/quit_button.gd" id="4_hcwrk"]
 
 [sub_resource type="Gradient" id="Gradient_fjg3k"]
-colors = PackedColorArray(0.6, 0, 0, 0.588235, 0.26, 0.0026, 0.0026, 0.588235)
+colors = PackedColorArray(0.37, 0.6, 0, 0.588235, 0.0026, 0.26, 0.0455, 0.588235)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cdwq5"]
 gradient = SubResource("Gradient_fjg3k")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="GameOverScreen" type="CanvasLayer"]
-script = ExtResource("1_wjuqh")
+[node name="WinScreen" type="CanvasLayer"]
+script = ExtResource("1_0jiek")
 
 [node name="Root" type="Control" parent="."]
 layout_mode = 3
@@ -24,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ucufe")
+theme = ExtResource("2_c4ivh")
 
 [node name="TextureRect" type="TextureRect" parent="Root"]
 layout_mode = 1
@@ -42,18 +42,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -272.5
-offset_top = -335.0
-offset_right = 272.5
-offset_bottom = -198.0
+offset_left = -182.5
+offset_top = -323.0
+offset_right = 182.5
+offset_bottom = -186.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.85, 0.85, 0, 1)
+theme_override_colors/font_color = Color(0.824, 1, 0.12, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 20
 theme_override_font_sizes/font_size = 100
-text = "Game Over"
+text = "Victory!"
 
 [node name="SubtitleLabel" type="Label" parent="Root"]
 layout_mode = 1
@@ -72,28 +72,29 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 50
-text = "Art is dead. 
-Humanity is doomed with AI generated content.
-And it's all your fault."
-label_settings = ExtResource("3_4uh8k")
+text = "Art has been saved.
+For now..."
+label_settings = ExtResource("3_vkh2o")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Root"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.619907
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -163.5
-offset_top = 148.0
-offset_right = 163.5
-offset_bottom = 211.0
+anchor_bottom = 0.619907
+offset_left = -145.5
+offset_top = -31.5
+offset_right = 145.5
+offset_bottom = 31.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+metadata/_edit_use_anchors_ = true
 
-[node name="TryAgainButton" type="Button" parent="Root/HBoxContainer"]
+[node name="NextLevelButton" type="Button" parent="Root/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.986752, 0.986752, 0.986752, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -103,13 +104,13 @@ theme_override_colors/font_hover_pressed_color = Color(0.803922, 1, 0.0196078, 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "Try Again"
+text = "Next"
 flat = true
-script = ExtResource("3_fdk88")
+script = ExtResource("3_twak3")
 
 [node name="QuitButton" type="Button" parent="Root/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.988235, 0.305882, 0.305882, 1)
+theme_override_colors/font_color = Color(0.99, 0.3069, 0.3069, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.84088, 0.92, 0.5244, 1)
 theme_override_colors/font_focus_color = Color(0.803922, 1, 0.0196078, 1)
@@ -119,7 +120,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 flat = true
-script = ExtResource("3_fbte7")
+script = ExtResource("4_hcwrk")
 
-[connection signal="pressed" from="Root/HBoxContainer/TryAgainButton" to="Root/HBoxContainer/TryAgainButton" method="_on_pressed"]
+[connection signal="pressed" from="Root/HBoxContainer/NextLevelButton" to="Root/HBoxContainer/NextLevelButton" method="_on_pressed"]
 [connection signal="pressed" from="Root/HBoxContainer/QuitButton" to="Root/HBoxContainer/QuitButton" method="_on_pressed"]
