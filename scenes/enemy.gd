@@ -9,6 +9,7 @@ extends PathFollow2D
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var target_pos: Node2D = $TargetPos
+@onready var audio_gethit = $AudioGethit
 
 var SPEED: = 100.0
 var health: float = 50
@@ -30,10 +31,12 @@ func _ready():
 func get_hit(damage: float):
 	health -= damage
 	health = clamp(health, 0, max_health)
+	audio_gethit.play()
 	if health == 0:
 		die()
 	else:
 		anim_gethit()
+		
 
 func die():
 	killed.emit()
