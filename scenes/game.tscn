@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy48vujtsqyyq"]
+[gd_scene load_steps=14 format=3 uid="uid://dy48vujtsqyyq"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_enj8k"]
 [ext_resource type="PackedScene" uid="uid://cxnm5x3mq25u3" path="res://scenes/pick_tower_menu.tscn" id="2_7l7u6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drv80csgi37yb" path="res://scenes/spawner.tscn" id="8_ie2qt"]
 [ext_resource type="Script" path="res://scenes/game_cam.gd" id="8_ooj1h"]
 [ext_resource type="PackedScene" uid="uid://bvype7ea50074" path="res://scenes/hud.tscn" id="9_8ivhk"]
+[ext_resource type="AudioStream" uid="uid://b18frqhofcn45" path="res://assets/audio/You can't beat the machine - Komiku.ogg" id="10_1651g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmc6w"]
 texture = ExtResource("4_vq1w5")
@@ -112,3 +113,8 @@ path = NodePath("../TileMap/Path2D")
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="UILayer" instance=ExtResource("9_8ivhk")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1651g")
+autoplay = true
+bus = &"Music"
