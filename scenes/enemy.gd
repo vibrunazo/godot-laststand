@@ -29,16 +29,19 @@ func _ready():
 	
 	
 func get_hit(damage: float):
+	if not is_ready: return
 	health -= damage
 	health = clamp(health, 0, max_health)
-	audio_gethit.play()
 	if health == 0:
+		audio_gethit.detach_and_play()
 		die()
 	else:
+		audio_gethit.play()
 		anim_gethit()
 		
 
 func die():
+	is_ready = false
 	killed.emit()
 	queue_free()
 

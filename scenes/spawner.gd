@@ -9,7 +9,7 @@ extends Node
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 50
+@export var max_enemies: int = 200
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var time_between_spawns: float = initial_time_between_spawns
