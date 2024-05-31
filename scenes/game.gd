@@ -10,6 +10,7 @@ extends Node2D
 @onready var ui_layer = $UILayer
 @onready var tower_layer = $TowerLayer
 @onready var spawner: Spawner = $Spawner
+@onready var tilemap: TileMap = $TileMap
 
 var is_selecting_tower: bool = false
 var tower_menu_ref: PickTowerMenu
@@ -90,12 +91,25 @@ func win():
 	await get_tree().create_timer(2).timeout
 	UI.show_win()
 
+func get_clicked_tile_wall() -> bool:
+	var clicked_cell = tilemap.local_to_map(tilemap.get_local_mouse_position())
+	var data = tilemap.get_cell_tile_data(0, clicked_cell)
+	if data:
+		return data.get_custom_data("wall")
+	else:
+		return false
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
+		var is_wall: bool = get_clicked_tile_wall()
+		print('is wall: %s' % is_wall)
+
 		if is_selecting_tower:
 			_on_artstand_clicked()
 		elif is_instance_valid(tower_being_placed):
-			place_tower()
+			if is_wall:
+				place_tower()
+				
 			
 func _on_artstand_clicked():
 	is_selecting_tower = !is_selecting_tower
