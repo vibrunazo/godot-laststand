@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckuw14smlun2o"]
+[gd_scene load_steps=5 format=3 uid="uid://ckuw14smlun2o"]
 
-[ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="1_e24w5"]
+[ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="1_vtj5p"]
 [ext_resource type="Script" path="res://scenes/pick_tower_button.gd" id="2_xw6no"]
+[ext_resource type="LabelSettings" uid="uid://d0fdjxr320da5" path="res://res/money.label.tres" id="3_1h4ad"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4q6xh"]
+font_size = 30
+font_color = Color(0.85, 0.85, 0.85, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
 
 [node name="PickTowerButton" type="Button"]
 anchors_preset = 8
@@ -11,13 +19,58 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -260.0
 offset_top = -260.0
-offset_right = 260.0
-offset_bottom = 260.0
+offset_right = 92.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(260, 296)
-icon = ExtResource("1_e24w5")
+icon = ExtResource("1_vtj5p")
 flat = true
 script = ExtResource("2_xw6no")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxTop" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -40.0
+offset_bottom = 29.0
+grow_horizontal = 2
+
+[node name="LabelCost" type="Label" parent="Control/VBoxTop"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$150"
+label_settings = ExtResource("3_1h4ad")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="LabelName" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Liberty"
+label_settings = SubResource("LabelSettings_4q6xh")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]

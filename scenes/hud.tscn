@@ -3,15 +3,9 @@
 [ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="1_jaty8"]
 [ext_resource type="Script" path="res://scenes/fullscreen_label.gd" id="2_gymef"]
 [ext_resource type="Script" path="res://scenes/label_money.gd" id="3_b1uj4"]
+[ext_resource type="LabelSettings" uid="uid://d0fdjxr320da5" path="res://res/money.label.tres" id="3_cefv8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j6syf"]
-font_size = 50
-font_color = Color(0.121623, 0.62, 0.0558, 1)
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-shadow_color = Color(0, 0, 0, 0.568627)
-
-[sub_resource type="LabelSettings" id="LabelSettings_6r1em"]
 font_size = 50
 font_color = Color(0.121623, 0.62, 0.0558, 1)
 outline_size = 10
@@ -69,5 +63,5 @@ label_settings = SubResource("LabelSettings_j6syf")
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
-label_settings = SubResource("LabelSettings_6r1em")
+label_settings = ExtResource("3_cefv8")
 script = ExtResource("3_b1uj4")

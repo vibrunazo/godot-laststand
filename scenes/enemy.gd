@@ -4,16 +4,18 @@ extends PathFollow2D
 @export var speed_min: float = 100.0
 @export var speed_max: float = 200.0
 @export var offset_max: float = 10.0
-@export var max_health: float = 50.0
+@export var max_health: float = 80.0
 ## How much money I give on death
-@export var money: float = 15.0
+@export var money_on_death: float = 2
+## How much money I give per health point taken in damage
+@export var money_per_hit: float = 0.1
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var target_pos: Node2D = $TargetPos
 @onready var audio_gethit = $AudioGethit
 
 var SPEED: = 100.0
-var health: float = 50
+var health: float = 100
 var ignore_ids: Array[String]
 var last_pos: Vector2 
 var is_ready: bool = true
@@ -31,8 +33,11 @@ func _ready():
 	
 func get_hit(damage: float):
 	if not is_ready: return
+	var health_before: float = health
 	health -= damage
 	health = clamp(health, 0, max_health)
+	var health_delta = health_before - health
+	GameState.money += health_delta * money_per_hit
 	if health == 0:
 		audio_gethit.detach_and_play()
 		die()
@@ -43,7 +48,7 @@ func get_hit(damage: float):
 
 func die():
 	is_ready = false
-	GameState.money += money
+	GameState.money += money_on_death
 	killed.emit()
 	queue_free()
 

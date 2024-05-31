@@ -8,3 +8,4 @@ extends Resource
 @export var author: String = ''
 @export var year: int = 1900
 @export var description: String = ''
+@export var cost: float = 100

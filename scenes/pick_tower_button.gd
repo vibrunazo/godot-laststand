@@ -2,6 +2,15 @@ class_name PickTowerButton
 extends Button
 
 @export var tower_data: TowerData
+@onready var label_name = %LabelName
+@onready var label_cost = %LabelCost
+
+func _ready():
+	update_from_data()
+
+func update_from_data():
+	label_name.text = tower_data.name
+	label_cost.text = "$%s" % round(tower_data.cost)
 
 var click_tween: Tween
 func anim_click():

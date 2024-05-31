@@ -2,8 +2,8 @@ class_name Game
 extends Node2D
 
 @export var pick_tower_scene: PackedScene
-@export var initial_health: float = 20
-@export var initial_money: float = 200
+@export var initial_health: float = 40
+@export var initial_money: float = 300
 
 @onready var artstand: ArtStand = %Artstand
 @onready var game_cam: GameCam = $GameCam
@@ -14,6 +14,7 @@ extends Node2D
 var is_selecting_tower: bool = false
 var tower_menu_ref: PickTowerMenu
 var tower_being_placed: Tower
+var tower_data_being_placed: TowerData
 var is_ready: bool = false
 
 func _ready():
@@ -56,8 +57,16 @@ func cancel_tower_placing():
 
 func place_tower():
 	if not is_instance_valid(tower_being_placed): return
+	if tower_data_being_placed.cost > GameState.money:
+		not_enought_money()
+		return
 	tower_being_placed.place()
 	tower_being_placed = null
+	GameState.money -= tower_data_being_placed.cost
+
+func not_enought_money():
+	print('not enough money')
+	cancel_tower_placing()
 	
 func spawn_tower(tower_data: TowerData):
 	if not tower_data: return
@@ -66,6 +75,7 @@ func spawn_tower(tower_data: TowerData):
 	var tower: Tower = tower_scene.instantiate() as Tower
 	tower_layer.add_child(tower)
 	tower_being_placed = tower
+	tower_data_being_placed = tower_data
 
 func game_over():
 	is_ready = false
@@ -102,6 +112,9 @@ func _on_tower_button_pressed(button: PickTowerButton):
 	await get_tree().create_timer(0.4).timeout
 	_on_artstand_clicked()
 	await get_tree().create_timer(0.2).timeout
+	if tower_data.cost > GameState.money:
+		not_enought_money()
+		return
 	spawn_tower(tower_data)
 
 func _on_goal_damaged(damage: float):

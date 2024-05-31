@@ -13,3 +13,4 @@ name = "Drawing Hands"
 author = "Escher"
 year = 1900
 description = "Hands draw each other"
+cost = 150.0

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://l1tjobjwh354"]
+
+[ext_resource type="PackedScene" uid="uid://ckuw14smlun2o" path="res://scenes/pick_tower_button.tscn" id="1_ec6et"]
+[ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="2_ohoe6"]
+[ext_resource type="Resource" uid="uid://bsu6cmd35jqwi" path="res://res/liberty.tower.tres" id="3_k4n3c"]
+[ext_resource type="LabelSettings" uid="uid://cdkx488yjqrlo" path="res://res/subtitle.label.tres" id="4_l26yu"]
+
+[node name="PickTowerBox" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -218.5
+offset_right = 176.0
+offset_bottom = 218.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PickTowerButton" parent="." instance=ExtResource("1_ec6et")]
+layout_mode = 2
+icon = ExtResource("2_ohoe6")
+icon_alignment = 1
+tower_data = ExtResource("3_k4n3c")
+
+[node name="CostLabel" type="Label" parent="."]
+layout_mode = 2
+text = "$100"
+label_settings = ExtResource("4_l26yu")
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Liberty"
+label_settings = ExtResource("4_l26yu")
+horizontal_alignment = 1
