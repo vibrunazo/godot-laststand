@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="2_c4ivh"]
 [ext_resource type="Script" path="res://scenes/retry_button.gd" id="3_twak3"]
 [ext_resource type="LabelSettings" uid="uid://cdkx488yjqrlo" path="res://res/subtitle.label.tres" id="3_vkh2o"]
-[ext_resource type="Script" path="res://scenes/quit_button.gd" id="4_hcwrk"]
+[ext_resource type="Script" path="res://scenes/button_back.gd" id="5_b1bes"]
 
 [sub_resource type="Gradient" id="Gradient_fjg3k"]
 colors = PackedColorArray(0.37, 0.6, 0, 0.588235, 0.0026, 0.26, 0.0455, 0.588235)
@@ -108,7 +108,7 @@ text = "Next"
 flat = true
 script = ExtResource("3_twak3")
 
-[node name="QuitButton" type="Button" parent="Root/HBoxContainer"]
+[node name="BackButton" type="Button" parent="Root/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.99, 0.3069, 0.3069, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -118,9 +118,9 @@ theme_override_colors/font_hover_pressed_color = Color(0.803922, 1, 0.0196078, 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "Quit"
+text = "Back to
+Main Menu"
 flat = true
-script = ExtResource("4_hcwrk")
+script = ExtResource("5_b1bes")
 
 [connection signal="pressed" from="Root/HBoxContainer/NextLevelButton" to="Root/HBoxContainer/NextLevelButton" method="_on_pressed"]
-[connection signal="pressed" from="Root/HBoxContainer/QuitButton" to="Root/HBoxContainer/QuitButton" method="_on_pressed"]

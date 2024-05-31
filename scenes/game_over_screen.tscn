@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="1_ucufe"]
 [ext_resource type="Script" path="res://scenes/game_over_screen.gd" id="1_wjuqh"]
 [ext_resource type="LabelSettings" uid="uid://cdkx488yjqrlo" path="res://res/subtitle.label.tres" id="3_4uh8k"]
-[ext_resource type="Script" path="res://scenes/quit_button.gd" id="3_fbte7"]
 [ext_resource type="Script" path="res://scenes/retry_button.gd" id="3_fdk88"]
+[ext_resource type="Script" path="res://scenes/button_back.gd" id="5_28qvx"]
 
 [sub_resource type="Gradient" id="Gradient_fjg3k"]
 colors = PackedColorArray(0.6, 0, 0, 0.588235, 0.26, 0.0026, 0.0026, 0.588235)
@@ -107,7 +107,7 @@ text = "Try Again"
 flat = true
 script = ExtResource("3_fdk88")
 
-[node name="QuitButton" type="Button" parent="Root/HBoxContainer"]
+[node name="ButtonBack" type="Button" parent="Root/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.988235, 0.305882, 0.305882, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -117,9 +117,9 @@ theme_override_colors/font_hover_pressed_color = Color(0.803922, 1, 0.0196078, 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "Quit"
+text = "Back to
+Main menu"
 flat = true
-script = ExtResource("3_fbte7")
+script = ExtResource("5_28qvx")
 
 [connection signal="pressed" from="Root/HBoxContainer/TryAgainButton" to="Root/HBoxContainer/TryAgainButton" method="_on_pressed"]
-[connection signal="pressed" from="Root/HBoxContainer/QuitButton" to="Root/HBoxContainer/QuitButton" method="_on_pressed"]

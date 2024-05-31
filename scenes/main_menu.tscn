@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://h30dm4hgelae"]
+
+[ext_resource type="Texture2D" uid="uid://cebtebx5xqsn5" path="res://assets/tex/opening_artstand.jpg" id="1_ws47r"]
+[ext_resource type="Script" path="res://scenes/button_play.gd" id="2_p7psr"]
+
+[sub_resource type="Gradient" id="Gradient_gf31j"]
+colors = PackedColorArray(0.188235, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_niqth"]
+gradient = SubResource("Gradient_gf31j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.0366972)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3oykl"]
+font_size = 150
+
+[node name="MainMenu" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_niqth")
+
+[node name="TexArtstand" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -540.0
+offset_right = 540.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ws47r")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_niqth")
+
+[node name="LabelTop" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -302.5
+offset_top = 71.0
+offset_right = 302.5
+offset_bottom = 276.0
+grow_horizontal = 2
+text = "The Last"
+label_settings = SubResource("LabelSettings_3oykl")
+
+[node name="LabelBot" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -339.0
+offset_top = -361.0
+offset_right = 339.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Art Stand"
+label_settings = SubResource("LabelSettings_3oykl")
+
+[node name="ButtonPlay" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -166.0
+offset_right = 54.5
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.777635, 0.87, 0.0783, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 50
+text = "Play"
+flat = true
+script = ExtResource("2_p7psr")
+
+[connection signal="pressed" from="ButtonPlay" to="ButtonPlay" method="_on_pressed"]

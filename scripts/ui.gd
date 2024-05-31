@@ -4,6 +4,8 @@ signal fullscreen_toggle(state: bool)
 
 const GAME_OVER_SCREEN = preload("res://scenes/game_over_screen.tscn")
 const WIN_SCREEN = preload("res://scenes/win_screen.tscn")
+const GAME_SCENE = preload("res://scenes/game.tscn")
+const MAIN_MENU = preload("res://scenes/main_menu.tscn")
 
 func show_game_over():
 	var root: Node2D = get_tree().current_scene
@@ -27,3 +29,10 @@ func toggle_fullscreen():
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		UI.fullscreen_toggle.emit(true)
+
+func go_to_game():
+	get_tree().change_scene_to_packed(GAME_SCENE)
+
+func go_to_main_menu():
+	get_tree().change_scene_to_packed(MAIN_MENU)
+	
