@@ -17,6 +17,10 @@ var tower_menu_ref: PickTowerMenu
 var tower_being_placed: Tower
 var tower_data_being_placed: TowerData
 var is_ready: bool = false
+## Map of cell coords per tower placed
+## Key: Vector2i cell coord
+## Value: Tower ref to the placed tower
+var map_tower_per_cell: Dictionary
 
 func _ready():
 	print('game started')
@@ -61,7 +65,13 @@ func place_tower():
 	if tower_data_being_placed.cost > GameState.money:
 		not_enought_money()
 		return
+	if not can_place_here(tower_being_placed.global_position):
+		cancel_tower_placing()
+		return
+	var cell_pos := get_cell_coord_from_global(tower_being_placed.global_position)
+	map_tower_per_cell[cell_pos] = tower_being_placed
 	tower_being_placed.global_position = get_center_of_tile_under_mouse()
+	tower_being_placed.modulate = Color.WHITE
 	tower_being_placed.place()
 	tower_being_placed = null
 	GameState.money -= tower_data_being_placed.cost
@@ -92,14 +102,33 @@ func win():
 	await get_tree().create_timer(2).timeout
 	UI.show_win()
 
-## Returns whether the tile under mouse is a wall or not
-func get_clicked_tile_wall() -> bool:
-	var clicked_cell = tilemap.local_to_map(tilemap.get_local_mouse_position())
+## Returns the cell coord of a given global coordinate
+func get_cell_coord_from_global(from: Vector2) -> Vector2i:
+	return tilemap.local_to_map(from)
+
+## Returns whether it's possible to place a tower here. False if not wall or there's an existing Tower
+func can_place_here(pos: Vector2) -> bool:
+	var is_wall: bool = is_wall_at(pos)
+	if not is_wall: return false
+	var cell_pos: = get_cell_coord_from_global(tower_being_placed.global_position)
+	if not map_tower_per_cell.has(cell_pos): return true
+	var existing_tower: Tower = map_tower_per_cell[cell_pos]
+	if is_instance_valid(existing_tower):
+		return false
+	return true
+
+## Returns whether given global pos is a wall or not
+func is_wall_at(pos: Vector2) -> bool:
+	var clicked_cell = tilemap.local_to_map(pos)
 	var data = tilemap.get_cell_tile_data(0, clicked_cell)
 	if data:
 		return data.get_custom_data("wall")
 	else:
 		return false
+		
+## Returns whether the tile under mouse is a wall or not
+func get_clicked_tile_wall() -> bool:
+	return is_wall_at(tilemap.get_local_mouse_position())
 
 ## Returns the global position of the center of the tile that is under the mouse
 func get_center_of_tile_under_mouse() -> Vector2:
@@ -118,9 +147,9 @@ func _unhandled_input(event):
 			if is_wall:
 				place_tower()
 	elif event is InputEventMouseMotion and is_instance_valid(tower_being_placed):
-		var is_wall: bool = get_clicked_tile_wall()
+		var can_place: bool = can_place_here(get_global_mouse_position())
 		tower_being_placed.global_position = get_center_of_tile_under_mouse()
-		if is_wall:
+		if can_place:
 			tower_being_placed.modulate = Color.WHITE
 		else:
 			tower_being_placed.modulate = Color.RED
