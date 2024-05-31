@@ -61,6 +61,7 @@ func place_tower():
 	if tower_data_being_placed.cost > GameState.money:
 		not_enought_money()
 		return
+	tower_being_placed.global_position = get_center_of_tile_under_mouse()
 	tower_being_placed.place()
 	tower_being_placed = null
 	GameState.money -= tower_data_being_placed.cost
@@ -91,6 +92,7 @@ func win():
 	await get_tree().create_timer(2).timeout
 	UI.show_win()
 
+## Returns whether the tile under mouse is a wall or not
 func get_clicked_tile_wall() -> bool:
 	var clicked_cell = tilemap.local_to_map(tilemap.get_local_mouse_position())
 	var data = tilemap.get_cell_tile_data(0, clicked_cell)
@@ -99,11 +101,19 @@ func get_clicked_tile_wall() -> bool:
 	else:
 		return false
 
+## Returns the global position of the center of the tile that is under the mouse
+func get_center_of_tile_under_mouse() -> Vector2:
+	var clicked_cell = tilemap.local_to_map(tilemap.get_local_mouse_position())
+	var local := tilemap.map_to_local(clicked_cell)
+	var global := tilemap.to_global(local)
+	return global
+	#var mouse := get_global_mouse_position()
+	#print('is wall: %s, local: %s, global: %s, mouse: %s' % [is_wall, local, global, mouse])
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
 		var is_wall: bool = get_clicked_tile_wall()
-		print('is wall: %s' % is_wall)
-
+		
 		if is_selecting_tower:
 			_on_artstand_clicked()
 		elif is_instance_valid(tower_being_placed):
