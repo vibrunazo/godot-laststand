@@ -107,8 +107,6 @@ func get_center_of_tile_under_mouse() -> Vector2:
 	var local := tilemap.map_to_local(clicked_cell)
 	var global := tilemap.to_global(local)
 	return global
-	#var mouse := get_global_mouse_position()
-	#print('is wall: %s, local: %s, global: %s, mouse: %s' % [is_wall, local, global, mouse])
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.is_pressed():
@@ -119,6 +117,13 @@ func _unhandled_input(event):
 		elif is_instance_valid(tower_being_placed):
 			if is_wall:
 				place_tower()
+	elif event is InputEventMouseMotion and is_instance_valid(tower_being_placed):
+		var is_wall: bool = get_clicked_tile_wall()
+		tower_being_placed.global_position = get_center_of_tile_under_mouse()
+		if is_wall:
+			tower_being_placed.modulate = Color.WHITE
+		else:
+			tower_being_placed.modulate = Color.RED
 				
 			
 func _on_artstand_clicked():

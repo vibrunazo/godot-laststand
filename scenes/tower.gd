@@ -14,10 +14,10 @@ var aggro_list: Array[Enemy]
 func _ready():
 	anim_start()
 
-func _process(_delta):
-	if is_being_placed:
-		update_pos_undermouse()
-		return
+#func _process(_delta):
+	#if is_being_placed:
+		#update_pos_undermouse()
+		#return
 
 func try_attack():
 	if aggro_list.is_empty(): return
