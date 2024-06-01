@@ -18,9 +18,10 @@ func _on_finished(anim_name: String):
 		"jobless":
 			anim.play("aigen")
 		"aigen":
-			anim.play("postmodern")
-		"postmodern":
 			anim.play("door")
+			#anim.play("postmodern")
+		#"postmodern":
+			#anim.play("door")
 		"door":
 			anim.play("broken")
 		"broken":

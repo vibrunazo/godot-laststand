@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://h30dm4hgelae"]
+[gd_scene load_steps=15 format=3 uid="uid://h30dm4hgelae"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_20yvv"]
 [ext_resource type="Texture2D" uid="uid://cebtebx5xqsn5" path="res://assets/tex/opening_artstand.jpg" id="1_ws47r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://3w1cw8idl58l" path="res://assets/tex/menu_thelast.png" id="3_bdo1c"]
 [ext_resource type="Texture2D" uid="uid://ben4iyb3i2sfu" path="res://assets/tex/menu_artstand.png" id="4_iopwb"]
 [ext_resource type="Script" path="res://scenes/button_watch.gd" id="5_ttn7j"]
+[ext_resource type="AudioStream" uid="uid://d4meiiwg6f0fl" path="res://assets/audio/250856__joshuaempyre__epic-orchestra-loop.ogg" id="8_1rh53"]
 
 [sub_resource type="Gradient" id="Gradient_gf31j"]
 colors = PackedColorArray(0.188235, 0, 0, 0, 0, 0, 0, 1)
@@ -70,6 +71,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TexArtstand:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ei7rs"]
 resource_name = "start"
@@ -81,10 +106,10 @@ tracks/0/path = NodePath("TexTheLast:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -93,7 +118,7 @@ tracks/1/path = NodePath("TexArtStand:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2),
+"times": PackedFloat32Array(0, 1, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -105,7 +130,7 @@ tracks/2/path = NodePath("ButtonPlay:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.6, 4),
+"times": PackedFloat32Array(0, 3.6, 4.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -117,10 +142,34 @@ tracks/3/path = NodePath("ButtonWatch:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(3.8, 4.8),
+"times": PackedFloat32Array(4.7, 5.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TexArtstand:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swweq"]
@@ -141,6 +190,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_niqth")
 
 [node name="TexArtstand" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -265,3 +315,7 @@ texture = ExtResource("4_iopwb")
 libraries = {
 "": SubResource("AnimationLibrary_swweq")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1rh53")
+bus = &"Music"
