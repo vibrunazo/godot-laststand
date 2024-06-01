@@ -23,13 +23,16 @@ func show_win():
 func is_fullscreen() -> bool:
 	return DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN or DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
+func go_fullscreen():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	UI.fullscreen_toggle.emit(true)
+	
 func toggle_fullscreen():
 	if is_fullscreen():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		UI.fullscreen_toggle.emit(false)
 	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-		UI.fullscreen_toggle.emit(true)
+		go_fullscreen()
 
 func go_to_game():
 	get_tree().change_scene_to_packed(GAME_SCENE)

@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://ckgps0rpf86at" path="res://res/lstheme.tres" id="1_ucufe"]
 [ext_resource type="Script" path="res://scenes/game_over_screen.gd" id="1_wjuqh"]
-[ext_resource type="LabelSettings" uid="uid://cdkx488yjqrlo" path="res://res/subtitle.label.tres" id="3_4uh8k"]
 [ext_resource type="Script" path="res://scenes/retry_button.gd" id="3_fdk88"]
+[ext_resource type="LabelSettings" uid="uid://0sw8ejop1o71" path="res://res/narrative.label.tres" id="3_i5mvr"]
 [ext_resource type="Script" path="res://scenes/button_back.gd" id="5_28qvx"]
 
 [sub_resource type="Gradient" id="Gradient_fjg3k"]
@@ -75,7 +75,7 @@ theme_override_font_sizes/font_size = 50
 text = "Art is dead. 
 Humanity is doomed with AI generated content.
 And it's all your fault."
-label_settings = ExtResource("3_4uh8k")
+label_settings = ExtResource("3_i5mvr")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Root"]
