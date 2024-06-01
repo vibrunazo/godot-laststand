@@ -18,4 +18,12 @@ func _on_finished(anim_name: String):
 		"jobless":
 			anim.play("aigen")
 		"aigen":
+			anim.play("postmodern")
+		"postmodern":
+			anim.play("door")
+		"door":
+			anim.play("broken")
+		"broken":
+			anim.play("except")
+		"except":
 			UI.go_to_main_menu()

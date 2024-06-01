@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0gig7plalcl7"]
+[gd_scene load_steps=26 format=3 uid="uid://c0gig7plalcl7"]
 
 [ext_resource type="Script" path="res://scenes/opening.gd" id="1_pwqjo"]
 [ext_resource type="Texture2D" uid="uid://d13t8eid7eho3" path="res://assets/tex/opening_raid.png" id="1_ukmrn"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cntsv5pvb8ajs" path="res://assets/tex/opening_aigen2.png" id="5_va0kl"]
 [ext_resource type="AudioStream" uid="uid://be444sucjrff3" path="res://assets/audio/398954__nozefian__epictrombone2.ogg" id="6_2w085"]
 [ext_resource type="Texture2D" uid="uid://crf06fveae0bf" path="res://assets/tex/opening_jobless.png" id="6_yhkxh"]
+[ext_resource type="Texture2D" uid="uid://ctq8xyn5wh3cn" path="res://assets/tex/opening_postmodern.png" id="7_0hsv2"]
+[ext_resource type="Texture2D" uid="uid://brehvsl8gh7ip" path="res://assets/tex/opening_door.png" id="8_ysv3u"]
+[ext_resource type="Texture2D" uid="uid://bc0h80ukwie8c" path="res://assets/tex/opening_broken.png" id="9_w00cv"]
 
 [sub_resource type="Gradient" id="Gradient_ren42"]
 colors = PackedColorArray(0.1, 0.05, 0.05, 1, 0.1, 0.05, 0.05, 1)
@@ -554,10 +557,10 @@ tracks/3/path = NodePath("Tabs:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -578,7 +581,7 @@ tracks/5/path = NodePath("Tabs/Jobless/LabelJobless:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.5, 5.6),
+"times": PackedFloat32Array(0, 5.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.7, 0.7), Vector2(1, 1)]
@@ -684,11 +687,331 @@ tracks/6/keys = {
 "values": [Vector2(448, 70), Vector2(448, -540)]
 }
 
+[sub_resource type="Animation" id="Animation_nslfl"]
+resource_name = "postmodern"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tabs:current_tab")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tabs/Postmodern/Tex:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.4, 5.5, 8.6, 8.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tabs:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tabs/Postmodern/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.3, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tabs/Postmodern/Label:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tabs/Postmodern/Tex:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.4, 8.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_alj28"]
+resource_name = "door"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(6.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tabs:current_tab")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tabs/Door/Tex:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6.3, 6.4, 9.5, 9.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tabs:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tabs/Door/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 6.2, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tabs/Door/Label:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tabs/Door/Tex:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(6.3, 9.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_ju5wg"]
+resource_name = "broken"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tabs:current_tab")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tabs/Broken/Tex:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.4, 5.5, 8.6, 8.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tabs:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Tabs/Broken/Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.3, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tabs/Broken/Label:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tabs/Broken/Tex:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5.4, 8.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_w6iyg"]
+resource_name = "except"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tabs:current_tab")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tabs:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tabs/Except/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 4.1, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tabs/Except/Label:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u41fv"]
 _data = {
 "RESET": SubResource("Animation_6wp6b"),
 "aigen": SubResource("Animation_3g5i8"),
+"broken": SubResource("Animation_ju5wg"),
+"door": SubResource("Animation_alj28"),
+"except": SubResource("Animation_w6iyg"),
 "jobless": SubResource("Animation_nxswm"),
+"postmodern": SubResource("Animation_nslfl"),
 "raid": SubResource("Animation_twen3"),
 "start": SubResource("Animation_14tot")
 }
@@ -846,6 +1169,7 @@ label_settings = ExtResource("3_w45tw")
 horizontal_alignment = 1
 
 [node name="Jobless" type="Control" parent="Tabs"]
+visible = false
 layout_mode = 2
 
 [node name="TexJobless" type="TextureRect" parent="Tabs/Jobless"]
@@ -862,7 +1186,6 @@ offset_right = 512.0
 offset_bottom = 534.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.2, 1.2)
 pivot_offset = Vector2(512, 452)
 texture = ExtResource("6_yhkxh")
 
@@ -880,10 +1203,162 @@ offset_right = 408.5
 offset_bottom = 106.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.941071, 0.941071)
 pivot_offset = Vector2(408.5, 10.5)
 text = "We have no other skills.
 Without art, we have no job.
 We have nothing."
+label_settings = ExtResource("3_w45tw")
+horizontal_alignment = 1
+
+[node name="Postmodern" type="Control" parent="Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="Tex" type="TextureRect" parent="Tabs/Postmodern"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -545.0
+offset_right = 512.0
+offset_bottom = 534.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(512, 452)
+texture = ExtResource("7_0hsv2")
+
+[node name="Label" type="Label" parent="Tabs/Postmodern"]
+modulate = Color(1, 1, 1, 0.4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.5
+offset_top = -106.5
+offset_right = 408.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.710714, 0.710714)
+pivot_offset = Vector2(408.5, 10.5)
+text = "Their soulless abominations
+reminds me of the worst we've created...
+post-modernism"
+label_settings = ExtResource("3_w45tw")
+horizontal_alignment = 1
+
+[node name="Door" type="Control" parent="Tabs"]
+layout_mode = 2
+
+[node name="Tex" type="TextureRect" parent="Tabs/Door"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -545.0
+offset_right = 512.0
+offset_bottom = 534.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(512, 452)
+texture = ExtResource("8_ysv3u")
+
+[node name="Label" type="Label" parent="Tabs/Door"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.5
+offset_top = -106.5
+offset_right = 408.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.941071, 0.941071)
+pivot_offset = Vector2(408.5, 10.5)
+text = "I couldn't stand it anymore.
+So I seek refuge in the last art gallery the robots had missed.
+Until one day... I heard a knock on the door"
+label_settings = ExtResource("3_w45tw")
+horizontal_alignment = 1
+
+[node name="Broken" type="Control" parent="Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="Tex" type="TextureRect" parent="Tabs/Broken"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -545.0
+offset_right = 512.0
+offset_bottom = 534.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(512, 452)
+texture = ExtResource("9_w00cv")
+
+[node name="Label" type="Label" parent="Tabs/Broken"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.5
+offset_top = -106.5
+offset_right = 408.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(408.5, 10.5)
+text = "They destroyed all our art.
+Destroyed all our tools.
+All my art stands."
+label_settings = ExtResource("3_w45tw")
+horizontal_alignment = 1
+
+[node name="Except" type="Control" parent="Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tabs/Except"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -408.5
+offset_top = -106.5
+offset_right = 408.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(408.5, 10.5)
+text = "All...
+...except for one."
 label_settings = ExtResource("3_w45tw")
 horizontal_alignment = 1
 
