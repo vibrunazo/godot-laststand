@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cq7nfdcldansm"
+path="res://.godot/imported/vo broken1.ogg-e4717a9767c58434a984ea0c3d0b3535.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/voiceover/vo broken1.ogg"
+dest_files=["res://.godot/imported/vo broken1.ogg-e4717a9767c58434a984ea0c3d0b3535.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

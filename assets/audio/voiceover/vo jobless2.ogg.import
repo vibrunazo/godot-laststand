@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bpa2t47mts5f"
+path="res://.godot/imported/vo jobless2.ogg-9f59ae5b2d8e5d3b7f958288acb33419.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/voiceover/vo jobless2.ogg"
+dest_files=["res://.godot/imported/vo jobless2.ogg-9f59ae5b2d8e5d3b7f958288acb33419.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

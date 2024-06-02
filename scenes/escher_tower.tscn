@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0eflv5gcqud4"]
+[gd_scene load_steps=8 format=3 uid="uid://b0eflv5gcqud4"]
 
 [ext_resource type="PackedScene" uid="uid://dvgwqwn3c2bi7" path="res://scenes/tower.tscn" id="1_chbax"]
 [ext_resource type="PackedScene" uid="uid://bw3kugw1shyi1" path="res://scenes/escher_bullet.tscn" id="2_qthc6"]
 [ext_resource type="Texture2D" uid="uid://dqpxwpntknusu" path="res://assets/tex/canvas_escher.png" id="2_ufbv0"]
+[ext_resource type="AudioStream" uid="uid://bomc1xq8hw5wp" path="res://assets/audio/paper being cut 6.ogg" id="4_r47d3"]
+[ext_resource type="AudioStream" uid="uid://cuopm1rkr8osr" path="res://assets/audio/paper being cut 16.ogg" id="5_sb48o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25hqp"]
 radius = 600.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ocgd6"]
+random_pitch = 1.2
+random_volume_offset_db = 3.0
+streams_count = 2
+stream_0/stream = ExtResource("4_r47d3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_sb48o")
+stream_1/weight = 1.0
 
 [node name="EscherTower" instance=ExtResource("1_chbax")]
 bullet_scene = ExtResource("2_qthc6")
@@ -15,3 +26,7 @@ texture = ExtResource("2_ufbv0")
 
 [node name="CollisionShape2D" parent="AggroArea" index="0"]
 shape = SubResource("CircleShape2D_25hqp")
+
+[node name="AudioFire" parent="." index="4"]
+stream = SubResource("AudioStreamRandomizer_ocgd6")
+volume_db = -6.0

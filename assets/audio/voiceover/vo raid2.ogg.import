@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://boag4t2ois6h8"
+path="res://.godot/imported/vo raid2.ogg-2b9570df49b7083ff3984e56fe82f4f1.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/voiceover/vo raid2.ogg"
+dest_files=["res://.godot/imported/vo raid2.ogg-2b9570df49b7083ff3984e56fe82f4f1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

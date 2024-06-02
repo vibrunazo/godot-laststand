@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://doi37gmrelpu1"
+path="res://.godot/imported/vo except.ogg-5ddb8208d2353b8d8f1a40876535e1b0.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/voiceover/vo except.ogg"
+dest_files=["res://.godot/imported/vo except.ogg-5ddb8208d2353b8d8f1a40876535e1b0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
