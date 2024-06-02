@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://g8cudfwopoas"]
+[gd_scene load_steps=6 format=3 uid="uid://g8cudfwopoas"]
 
 [ext_resource type="PackedScene" uid="uid://dvgwqwn3c2bi7" path="res://scenes/tower.tscn" id="1_xh7bg"]
 [ext_resource type="PackedScene" uid="uid://lsvarokp3y85" path="res://scenes/liberty_bullet.tscn" id="2_4ords"]
 [ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="2_5qtpv"]
+[ext_resource type="AudioStream" uid="uid://c86hxu5lpb21e" path="res://assets/audio/GUNPis_Pistol Fire Longer Tail_05.ogg" id="4_jr0d0"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_12lb3"]
+random_pitch = 1.4
+random_volume_offset_db = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("4_jr0d0")
+stream_0/weight = 1.0
 
 [node name="LibertyTower" instance=ExtResource("1_xh7bg")]
 damage = 8.0
@@ -13,3 +21,7 @@ texture = ExtResource("2_5qtpv")
 
 [node name="AttackTimer" parent="." index="1"]
 wait_time = 0.6
+
+[node name="AudioFire" parent="." index="4"]
+stream = SubResource("AudioStreamRandomizer_12lb3")
+volume_db = -6.0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://l50e0us47los"
+path="res://.godot/imported/capri suns being cast down 7.ogg-53e6d82b60ff41465721e91eb96de0cd.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/capri suns being cast down 7.ogg"
+dest_files=["res://.godot/imported/capri suns being cast down 7.ogg-53e6d82b60ff41465721e91eb96de0cd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

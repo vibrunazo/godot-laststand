@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c86hxu5lpb21e"
+path="res://.godot/imported/GUNPis_Pistol Fire Longer Tail_05.ogg-bc25bb71d1d3a446112a963319ed8958.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/GUNPis_Pistol Fire Longer Tail_05.ogg"
+dest_files=["res://.godot/imported/GUNPis_Pistol Fire Longer Tail_05.ogg-bc25bb71d1d3a446112a963319ed8958.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

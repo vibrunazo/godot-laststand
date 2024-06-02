@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var attack_timer = $AttackTimer
 @onready var audio_placed = $AudioPlaced
+@onready var audio_fire = $AudioFire
 
 var is_being_placed: bool = true
 var aggro_list: Array[Enemy]
@@ -34,6 +35,7 @@ func spawn_bullet(target: Enemy):
 	bullet.target = target
 	bullet.global_position = global_position
 	tower_layer.call_deferred("add_child", bullet)
+	audio_fire.play()
 	
 	
 
