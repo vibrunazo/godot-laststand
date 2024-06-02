@@ -27,4 +27,6 @@ func _on_finished(anim_name: String):
 		"broken":
 			anim.play("except")
 		"except":
+			anim.play("end")
+		"end":
 			UI.go_to_main_menu()

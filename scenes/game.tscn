@@ -124,7 +124,7 @@ path = NodePath("../TileMap/Path2D")
 
 [node name="Hud" parent="UILayer" instance=ExtResource("9_8ivhk")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_1651g")
 volume_db = -16.0
 autoplay = true

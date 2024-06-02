@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxnm5x3mq25u3"]
+[gd_scene load_steps=11 format=3 uid="uid://cxnm5x3mq25u3"]
 
 [ext_resource type="Script" path="res://scenes/pick_tower_menu.gd" id="1_ms78v"]
 [ext_resource type="PackedScene" uid="uid://ckuw14smlun2o" path="res://scenes/pick_tower_button.tscn" id="2_g6gme"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dqpxwpntknusu" path="res://assets/tex/canvas_escher.png" id="5_t1cue"]
 [ext_resource type="Resource" uid="uid://brtu53htofc5u" path="res://res/monalisa.tower.tres" id="6_k7a7v"]
 [ext_resource type="Resource" uid="uid://dovvmi4xjevxx" path="res://res/escher.tower.tres" id="6_t3g1e"]
+[ext_resource type="AudioStream" uid="uid://b3oe253n12jbv" path="res://assets/audio/whoosh_up2.ogg" id="8_skq3n"]
+[ext_resource type="AudioStream" uid="uid://c52frv0ascu0v" path="res://assets/audio/whoosh_down2.ogg" id="9_8sa5n"]
+[ext_resource type="Script" path="res://scenes/audio_detached.gd" id="10_grxxi"]
 
 [node name="PickTowerMenu" type="Control"]
 layout_mode = 3
@@ -45,3 +48,12 @@ offset_right = 164.0
 offset_bottom = -199.0
 icon = ExtResource("5_t1cue")
 tower_data = ExtResource("6_t3g1e")
+
+[node name="AudioOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_skq3n")
+bus = &"SFX"
+
+[node name="AudioClose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_8sa5n")
+bus = &"SFX"
+script = ExtResource("10_grxxi")

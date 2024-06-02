@@ -2,6 +2,8 @@ class_name PickTowerMenu
 extends Control
 
 var buttons: Array[PickTowerButton]
+@onready var audio_open = $AudioOpen
+@onready var audio_close = $AudioClose
 
 signal button_pressed(button)
 
@@ -20,6 +22,7 @@ func bind_signals():
 			
 var anim_tween: Tween
 func anim_start():
+	audio_open.play()
 	scale = Vector2(0, 0)
 	anim_tween = create_tween()
 	anim_tween.set_ease(Tween.EASE_OUT)
@@ -27,6 +30,7 @@ func anim_start():
 	anim_tween.tween_property(self, "scale", Vector2(1,1), 0.9)
 
 func anim_end():
+	audio_close.detach_and_play()
 	anim_tween.stop()
 	anim_tween = create_tween()
 	anim_tween.set_ease(Tween.EASE_OUT)

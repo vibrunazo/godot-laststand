@@ -21,5 +21,6 @@ func toggle_debug_speed():
 	print('time scale is %s' % [Engine.time_scale])
 
 func debug_test():
+	pass
 	#UI.show_game_over()
-	UI.show_win()
+	#UI.show_win()
