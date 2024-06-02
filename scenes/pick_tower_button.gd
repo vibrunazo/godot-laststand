@@ -4,6 +4,7 @@ extends Button
 @export var tower_data: TowerData
 @onready var label_name = %LabelName
 @onready var label_cost = %LabelCost
+@onready var audio_click = $AudioClick
 
 func _ready():
 	update_from_data()
@@ -14,6 +15,7 @@ func update_from_data():
 
 var click_tween: Tween
 func anim_click():
+	audio_click.play()
 	click_tween = create_tween()
 	click_tween.set_ease(Tween.EASE_IN_OUT)
 	click_tween.set_trans(Tween.TRANS_QUAD)

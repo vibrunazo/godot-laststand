@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckuw14smlun2o"]
+[gd_scene load_steps=7 format=3 uid="uid://ckuw14smlun2o"]
 
 [ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="1_vtj5p"]
 [ext_resource type="Script" path="res://scenes/pick_tower_button.gd" id="2_xw6no"]
 [ext_resource type="LabelSettings" uid="uid://d0fdjxr320da5" path="res://res/money.label.tres" id="3_1h4ad"]
+[ext_resource type="AudioStream" uid="uid://bs37pm5p2fppd" path="res://assets/audio/confirmation_003.ogg" id="4_l6y3a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4q6xh"]
 font_size = 30
@@ -10,6 +11,13 @@ font_color = Color(0.85, 0.85, 0.85, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.568627)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b7jpt"]
+random_pitch = 1.2
+random_volume_offset_db = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("4_l6y3a")
+stream_0/weight = 1.0
 
 [node name="PickTowerButton" type="Button"]
 anchors_preset = 8
@@ -72,5 +80,9 @@ text = "Liberty"
 label_settings = SubResource("LabelSettings_4q6xh")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_b7jpt")
+volume_db = -6.0
 
 [connection signal="button_down" from="." to="." method="_on_button_down"]

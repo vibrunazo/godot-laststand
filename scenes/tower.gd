@@ -6,6 +6,7 @@ extends Node2D
 @export var bullet_scene: PackedScene
 
 @onready var attack_timer = $AttackTimer
+@onready var audio_placed = $AudioPlaced
 
 var is_being_placed: bool = true
 var aggro_list: Array[Enemy]
@@ -13,11 +14,6 @@ var aggro_list: Array[Enemy]
 
 func _ready():
 	anim_start()
-
-#func _process(_delta):
-	#if is_being_placed:
-		#update_pos_undermouse()
-		#return
 
 func try_attack():
 	if aggro_list.is_empty(): return
@@ -53,6 +49,7 @@ func anim_start():
 	anim_tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.9)
 	
 func anim_placed():
+	audio_placed.play()
 	anim_tween = create_tween()
 	anim_tween.set_ease(Tween.EASE_OUT)
 	anim_tween.set_trans(Tween.TRANS_ELASTIC)

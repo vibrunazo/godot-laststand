@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvgwqwn3c2bi7"]
+[gd_scene load_steps=7 format=3 uid="uid://dvgwqwn3c2bi7"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_k0n0p"]
 [ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="2_ht00y"]
 [ext_resource type="PackedScene" uid="uid://c2w7xv82rkvts" path="res://scenes/bullet.tscn" id="2_jge4i"]
+[ext_resource type="AudioStream" uid="uid://bmrodteo61e1c" path="res://assets/audio/confirmation_002.ogg" id="4_ihy1t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ixbmu"]
 radius = 400.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5es80"]
+random_pitch = 1.2
+random_volume_offset_db = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("4_ihy1t")
+stream_0/weight = 1.0
 
 [node name="Tower" type="Node2D"]
 script = ExtResource("1_k0n0p")
@@ -22,6 +30,10 @@ wait_time = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
 shape = SubResource("CircleShape2D_ixbmu")
+
+[node name="AudioPlaced" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_5es80")
+volume_db = -6.0
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="area_entered" from="AggroArea" to="." method="_on_aggro_area_area_entered"]

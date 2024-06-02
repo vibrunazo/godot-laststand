@@ -4,6 +4,7 @@ extends Sprite2D
 signal clicked
 @onready var sprite: Sprite2D = $Canvas
 @onready var health_bar = %HealthBar
+@onready var audio_click = $AudioClick
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +14,7 @@ func _ready():
 	
 var click_tween: Tween
 func anim_click():
+	audio_click.play()
 	click_tween = create_tween()
 	click_tween.set_ease(Tween.EASE_IN_OUT)
 	click_tween.set_trans(Tween.TRANS_QUAD)
