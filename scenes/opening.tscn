@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c0gig7plalcl7"]
+[gd_scene load_steps=40 format=3 uid="uid://c0gig7plalcl7"]
 
 [ext_resource type="Script" path="res://scenes/opening.gd" id="1_pwqjo"]
 [ext_resource type="Texture2D" uid="uid://d13t8eid7eho3" path="res://assets/tex/opening_raid.png" id="1_ukmrn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://brehvsl8gh7ip" path="res://assets/tex/opening_door.png" id="8_ysv3u"]
 [ext_resource type="Texture2D" uid="uid://bc0h80ukwie8c" path="res://assets/tex/opening_broken.png" id="9_w00cv"]
 [ext_resource type="AudioStream" uid="uid://di3ft60jowq2g" path="res://assets/audio/voiceover/vo raid1.ogg" id="10_o3d54"]
+[ext_resource type="Script" path="res://scenes/button_skip.gd" id="10_xel3f"]
 [ext_resource type="AudioStream" uid="uid://boag4t2ois6h8" path="res://assets/audio/voiceover/vo raid2.ogg" id="11_odom4"]
 [ext_resource type="AudioStream" uid="uid://blln6ush1pxrb" path="res://assets/audio/voiceover/vo jobless1.ogg" id="12_8pwli"]
 [ext_resource type="AudioStream" uid="uid://bpa2t47mts5f" path="res://assets/audio/voiceover/vo jobless2.ogg" id="13_tw03v"]
@@ -1295,7 +1296,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lj2tb")
-current_tab = 6
 tabs_visible = false
 tab_focus_mode = 0
 
@@ -1374,10 +1374,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 448.0
-offset_top = 70.0
-offset_right = 1472.0
-offset_bottom = 1149.0
+offset_left = -512.0
+offset_top = -470.0
+offset_right = 512.0
+offset_bottom = 609.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(512, 452)
@@ -1690,6 +1690,7 @@ offset_right = 408.5
 offset_bottom = 106.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(408.5, 10.5)
 text = "All...
 ...except for one."
@@ -1703,7 +1704,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_yeyhp")
+
+[node name="ButtonSkip" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = -37.0
+offset_bottom = -89.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Skip intro"
+script = ExtResource("10_xel3f")
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
