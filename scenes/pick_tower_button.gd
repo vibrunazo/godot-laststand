@@ -4,13 +4,15 @@ extends Button
 @export var tower_data: TowerData
 @onready var label_name = %LabelName
 @onready var label_cost = %LabelCost
+@onready var label_author = %LabelAuthor
 @onready var audio_click = $AudioClick
 
 func _ready():
 	update_from_data()
 
 func update_from_data():
-	label_name.text = tower_data.name
+	label_name.text = "%s (%s)" % [tower_data.name, tower_data.year]
+	label_author.text = "by %s" % [tower_data.author]
 	label_cost.text = "$%s" % round(tower_data.cost)
 
 var click_tween: Tween

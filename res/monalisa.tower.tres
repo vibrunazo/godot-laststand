@@ -7,8 +7,8 @@
 script = ExtResource("3_tnqqt")
 id = "monalisa"
 scene = ExtResource("1_7fsci")
-name = "Liberty Leading the People"
-author = "Eugène Delacroix"
-year = 1830
+name = "Mona Lisa"
+author = "Leonardo da Vinci"
+year = 1503
 description = "Celebration of the French Revolution of 1830."
 cost = 200.0

@@ -81,6 +81,14 @@ label_settings = SubResource("LabelSettings_4q6xh")
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="LabelAuthor" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "by "
+label_settings = SubResource("LabelSettings_4q6xh")
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="AudioClick" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_b7jpt")
 volume_db = -6.0
