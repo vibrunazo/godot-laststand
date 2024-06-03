@@ -1,9 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnxul7hgd4yej"]
+[gd_scene load_steps=8 format=3 uid="uid://bnxul7hgd4yej"]
 
 [ext_resource type="Texture2D" uid="uid://ctfuqf4ddgd8o" path="res://assets/tex/artstand.png" id="1_c04ca"]
 [ext_resource type="Script" path="res://scenes/artstand.gd" id="2_xbuf0"]
 [ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="3_nyufh"]
 [ext_resource type="AudioStream" uid="uid://dbgcfm6ivjl6y" path="res://assets/audio/confirmation_001.ogg" id="4_0eexi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e061r"]
+bg_color = Color(0.41598, 0.41598, 0.41598, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.277528, 0.277528, 0.277527, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eminv"]
+bg_color = Color(0.33924, 0.66, 0.1254, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.32214, 0.39, 0.2769, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_thlrh"]
 random_pitch = 1.15
@@ -58,8 +84,10 @@ offset_right = 2.0
 offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_e061r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eminv")
 max_value = 20.0
-value = 20.0
+value = 15.0
 
 [node name="AudioClick" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_thlrh")
