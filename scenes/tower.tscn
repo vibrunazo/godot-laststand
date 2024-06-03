@@ -19,17 +19,19 @@ stream_0/weight = 1.0
 script = ExtResource("1_k0n0p")
 bullet_scene = ExtResource("2_jge4i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_ht00y")
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 3.0
-
 [node name="AggroArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
 shape = SubResource("CircleShape2D_ixbmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ht00y")
+
+[node name="SpawnPos" type="Node2D" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="AudioPlaced" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_5es80")
@@ -37,6 +39,10 @@ volume_db = -6.0
 
 [node name="AudioFire" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+
 [connection signal="area_entered" from="AggroArea" to="." method="_on_aggro_area_area_entered"]
 [connection signal="area_exited" from="AggroArea" to="." method="_on_aggro_area_area_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -13,6 +13,7 @@ extends PathFollow2D
 @onready var sprite: Sprite2D = $Sprite
 @onready var target_pos: Node2D = $TargetPos
 @onready var audio_gethit = $AudioGethit
+@onready var hit_box = $HitBox
 
 var SPEED: = 100.0
 var health: float = 100
@@ -48,9 +49,18 @@ func get_hit(damage: float):
 
 func die():
 	is_ready = false
+	var health_before: float = health
+	health = 0
+	var health_delta = health_before - health
+	GameState.money += health_delta * money_per_hit
 	GameState.money += money_on_death
 	killed.emit()
 	queue_free()
+
+func grab():
+	is_ready = false
+	hit_box.set_deferred("monitorable", false)
+	z_index += 1
 
 func anim_gethit():
 	var ini_pos: Vector2 = sprite.position
@@ -83,6 +93,7 @@ func reach_end():
 	queue_free()
 
 func _physics_process(delta):
+	if not is_ready: return
 	progress += delta * SPEED
 	if progress_ratio >= 1:
 		reach_end()

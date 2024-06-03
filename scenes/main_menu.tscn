@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://3w1cw8idl58l" path="res://assets/tex/menu_thelast.png" id="3_bdo1c"]
 [ext_resource type="Texture2D" uid="uid://ben4iyb3i2sfu" path="res://assets/tex/menu_artstand.png" id="4_iopwb"]
 [ext_resource type="Script" path="res://scenes/button_watch.gd" id="5_ttn7j"]
-[ext_resource type="AudioStream" uid="uid://d4meiiwg6f0fl" path="res://assets/audio/250856__joshuaempyre__epic-orchestra-loop.ogg" id="8_1rh53"]
+[ext_resource type="AudioStream" uid="uid://d4meiiwg6f0fl" path="res://assets/audio/music/250856__joshuaempyre__epic-orchestra-loop.ogg" id="8_dwkgb"]
 
 [sub_resource type="Gradient" id="Gradient_gf31j"]
 colors = PackedColorArray(0.188235, 0, 0, 0, 0, 0, 0, 1)
@@ -456,5 +456,5 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_1rh53")
+stream = ExtResource("8_dwkgb")
 bus = &"Music"

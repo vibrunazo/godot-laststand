@@ -8,6 +8,7 @@
 size = Vector2(50, 50)
 
 [node name="Bullet" type="Node2D"]
+z_index = 10
 script = ExtResource("1_sdbow")
 
 [node name="DamageBox" type="Area2D" parent="."]

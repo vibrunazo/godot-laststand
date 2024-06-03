@@ -8,6 +8,8 @@ extends Node2D
 @onready var attack_timer = $AttackTimer
 @onready var audio_placed = $AudioPlaced
 @onready var audio_fire = $AudioFire
+@onready var anim = $Anim
+@onready var spawn_pos = $SpawnPos
 
 var is_being_placed: bool = true
 var aggro_list: Array[Enemy]
@@ -22,9 +24,20 @@ func try_attack():
 	attack();
 
 func attack():
-	var target: Enemy = aggro_list[0]
+	var target: Enemy = pick_target_from_aggro_list()
 	#target.get_hit(damage)
+	if not target.is_ready: return
 	spawn_bullet(target)
+
+func pick_target_from_aggro_list() -> Enemy:
+	var target: Enemy = aggro_list[0]
+	var score = 0
+	for enemy in aggro_list:
+		if not enemy.is_ready: continue
+		if enemy.progress_ratio > score:
+			target = enemy
+			score = enemy.progress_ratio
+	return target
 
 func spawn_bullet(target: Enemy):
 	if not bullet_scene: return
@@ -33,6 +46,7 @@ func spawn_bullet(target: Enemy):
 	var bullet: Bullet = bullet_scene.instantiate() as Bullet
 	bullet.damage = damage
 	bullet.target = target
+	bullet.caster = self
 	bullet.global_position = global_position
 	tower_layer.call_deferred("add_child", bullet)
 	audio_fire.play()
@@ -67,6 +81,7 @@ func place():
 
 func _on_aggro_area_area_entered(area):
 	if not area.get_parent() is Enemy: return
+	if not area.get_parent().is_ready: return
 	aggro_list.append(area.get_parent())
 	if not is_being_placed and attack_timer.is_stopped():
 		attack_timer.start()

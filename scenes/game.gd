@@ -8,7 +8,7 @@ extends Node2D
 @onready var artstand: ArtStand = %Artstand
 @onready var game_cam: GameCam = $GameCam
 @onready var ui_layer = $UILayer
-@onready var tower_layer = $TowerLayer
+@onready var tower_layer = %TowerLayer
 @onready var spawner: Spawner = $Spawner
 @onready var tilemap: TileMap = $TileMap
 

@@ -9,6 +9,8 @@ extends Node2D
 @onready var damage_box: DamageBox = $DamageBox
 @onready var sprite_root = $SpriteRoot
 
+## ref to the tower who cast this bullet
+var caster: Node2D
 var target_pos: Vector2
 var direction: Vector2
 var last_direction: Vector2

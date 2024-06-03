@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drv80csgi37yb" path="res://scenes/spawner.tscn" id="8_ie2qt"]
 [ext_resource type="Script" path="res://scenes/game_cam.gd" id="8_ooj1h"]
 [ext_resource type="PackedScene" uid="uid://bvype7ea50074" path="res://scenes/hud.tscn" id="9_8ivhk"]
-[ext_resource type="AudioStream" uid="uid://b18frqhofcn45" path="res://assets/audio/You can't beat the machine - Komiku.ogg" id="10_1651g"]
+[ext_resource type="AudioStream" uid="uid://b18frqhofcn45" path="res://assets/audio/music/You can't beat the machine - Komiku.ogg" id="10_4d3t4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmc6w"]
 texture = ExtResource("4_vq1w5")
@@ -92,11 +92,13 @@ curve = SubResource("Curve2D_jy3kb")
 unique_name_in_owner = true
 position = Vector2(448, 384)
 
+[node name="TowerLayer" type="Node2D" parent="TileMap/Path2D" groups=["tower_layer"]]
+unique_name_in_owner = true
+y_sort_enabled = true
+
 [node name="GameCam" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("8_ooj1h")
-
-[node name="TowerLayer" type="Node2D" parent="." groups=["tower_layer"]]
 
 [node name="FXLayer" type="CanvasLayer" parent="."]
 
@@ -125,7 +127,7 @@ path = NodePath("../TileMap/Path2D")
 [node name="Hud" parent="UILayer" instance=ExtResource("9_8ivhk")]
 
 [node name="AudioMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_1651g")
+stream = ExtResource("10_4d3t4")
 volume_db = -16.0
 autoplay = true
 bus = &"Music"
