@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://drv80csgi37yb"]
+[gd_scene load_steps=5 format=3 uid="uid://drv80csgi37yb"]
 
 [ext_resource type="Script" path="res://scenes/spawner.gd" id="1_1sidu"]
 [ext_resource type="PackedScene" uid="uid://d175g5ac1ab72" path="res://scenes/enemy.tscn" id="2_v8cd3"]
+[ext_resource type="PackedScene" uid="uid://ylt6s8pllj5w" path="res://scenes/enemy_big.tscn" id="3_jud2q"]
 [ext_resource type="Curve" uid="uid://ce1uk802jcouv" path="res://res/spawn_per_difficulty_curve.tres" id="3_yc6ud"]
 
 [node name="Spawner" type="Node"]
 script = ExtResource("1_1sidu")
 enemy_scene = ExtResource("2_v8cd3")
+enemy_big_scene = ExtResource("3_jud2q")
 difficulty_curve = ExtResource("3_yc6ud")
 
 [node name="SpawnTimer" type="Timer" parent="."]

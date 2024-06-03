@@ -3,13 +3,14 @@ extends Node
 
 @export var path: Path2D
 @export var enemy_scene: PackedScene
+@export var enemy_big_scene: PackedScene
 @export var difficulty_curve: Curve
 @export var initial_time_between_spawns: float = 5
 @export var min_time_between_spawns: float = 0.2
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 200
+@export var max_enemies: int = 400
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var time_between_spawns: float = initial_time_between_spawns
@@ -38,10 +39,23 @@ func try_spawn_enemy():
 func spawn_enemy():
 	if not enemy_scene: return
 	last_spawn_time = time
-	var new_enemy: Enemy = enemy_scene.instantiate() as Enemy
+	var new_enemy: Enemy = pick_enemy_to_spawn()
 	new_enemy.killed.connect(_on_enemy_killed)
 	path.add_child(new_enemy)
 	num_spawned += 1
+
+func pick_enemy_to_spawn() -> Enemy:
+	if difficulty <= 7: 
+		#print('d: %s <= 5' % difficulty)
+		return enemy_scene.instantiate()
+	var r = randf()
+	var t = float(difficulty) / float(max_difficulty)
+	t *= 0.2
+	var b = r < t
+	#print('d: %s, r: %s, t: %s, b: %s' % [difficulty, r, t, b])
+	if b: return enemy_big_scene.instantiate()
+	
+	return enemy_scene.instantiate()
 
 func update_difficulty():
 	#var time := time / 1000.0
