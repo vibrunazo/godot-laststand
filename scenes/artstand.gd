@@ -5,11 +5,13 @@ signal clicked
 @onready var sprite: Sprite2D = $Canvas
 @onready var health_bar = %HealthBar
 @onready var audio_click = $AudioClick
+@onready var button = $Button
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameState.health_changed.connect(_on_health_changed)
+	button.grab_focus()
 	
 	
 var click_tween: Tween

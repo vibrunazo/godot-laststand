@@ -1,9 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnxul7hgd4yej"]
+[gd_scene load_steps=13 format=3 uid="uid://bnxul7hgd4yej"]
 
 [ext_resource type="Texture2D" uid="uid://ctfuqf4ddgd8o" path="res://assets/tex/artstand.png" id="1_c04ca"]
 [ext_resource type="Script" path="res://scenes/artstand.gd" id="2_xbuf0"]
+[ext_resource type="Texture2D" uid="uid://d0bbhqcebyrwi" path="res://assets/tex/artstand-glow.png" id="3_bp5ha"]
 [ext_resource type="Texture2D" uid="uid://bndkm8vpo7cea" path="res://assets/tex/canvas.png" id="3_nyufh"]
 [ext_resource type="AudioStream" uid="uid://dbgcfm6ivjl6y" path="res://assets/audio/confirmation_001.ogg" id="4_0eexi"]
+[ext_resource type="Texture2D" uid="uid://r4psgpgcry4c" path="res://assets/tex/canvas_glow.png" id="5_keh4n"]
+[ext_resource type="Script" path="res://scenes/glowing_sprite.gd" id="6_lj53b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h121"]
+bg_color = Color(0.501961, 0.105882, 0.701961, 0.117647)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.69, 0.27, 0.9, 0.392157)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.69, 0.27, 0.9, 0.392157)
+shadow_size = 10
+
+[sub_resource type="Shortcut" id="Shortcut_rijc6"]
+events = [null]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e061r"]
 bg_color = Color(0.41598, 0.41598, 0.41598, 1)
@@ -45,16 +66,36 @@ offset = Vector2(0, -64)
 script = ExtResource("2_xbuf0")
 
 [node name="Button" type="Button" parent="."]
-offset_left = -83.0
-offset_top = -148.0
-offset_right = 83.0
-offset_bottom = 64.0
+custom_minimum_size = Vector2(220, 220)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -298.0
+offset_right = -28.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_4h121")
+shortcut = SubResource("Shortcut_rijc6")
 flat = true
+
+[node name="SpriteGlow" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_bp5ha")
+offset = Vector2(0, -64)
 
 [node name="Canvas" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_nyufh")
 offset = Vector2(-8, -165)
+
+[node name="SpriteGlow" type="Sprite2D" parent="Canvas"]
+texture = ExtResource("5_keh4n")
+offset = Vector2(-8, -165)
+script = ExtResource("6_lj53b")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
