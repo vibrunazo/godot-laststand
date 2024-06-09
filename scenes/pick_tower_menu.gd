@@ -18,7 +18,7 @@ func bind_signals():
 	for c in children:
 		if c is PickTowerButton:
 			buttons.append(c)
-			c.button_down.connect(_on_button_pressed.bind(c))
+			c.pressed.connect(_on_button_pressed.bind(c))
 			
 var anim_tween: Tween
 func anim_start():

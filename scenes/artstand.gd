@@ -12,6 +12,7 @@ signal clicked
 func _ready():
 	GameState.health_changed.connect(_on_health_changed)
 	button.grab_focus()
+	button.pressed.connect(_on_button_down)
 	
 	
 var click_tween: Tween

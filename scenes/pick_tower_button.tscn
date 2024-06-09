@@ -32,6 +32,7 @@ offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(260, 296)
+action_mode = 0
 icon = ExtResource("1_vtj5p")
 flat = true
 script = ExtResource("2_xw6no")
@@ -92,5 +93,3 @@ vertical_alignment = 2
 [node name="AudioClick" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_b7jpt")
 volume_db = -6.0
-
-[connection signal="button_down" from="." to="." method="_on_button_down"]

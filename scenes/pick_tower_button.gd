@@ -9,6 +9,7 @@ extends Button
 
 func _ready():
 	update_from_data()
+	pressed.connect(_on_button_down)
 
 func update_from_data():
 	label_name.text = "%s (%s)" % [tower_data.name, tower_data.year]

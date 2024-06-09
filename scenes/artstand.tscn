@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bnxul7hgd4yej"]
+[gd_scene load_steps=14 format=3 uid="uid://bnxul7hgd4yej"]
 
 [ext_resource type="Texture2D" uid="uid://ctfuqf4ddgd8o" path="res://assets/tex/artstand.png" id="1_c04ca"]
 [ext_resource type="Script" path="res://scenes/artstand.gd" id="2_xbuf0"]
@@ -23,8 +23,12 @@ corner_radius_bottom_left = 20
 shadow_color = Color(0.69, 0.27, 0.9, 0.392157)
 shadow_size = 10
 
-[sub_resource type="Shortcut" id="Shortcut_rijc6"]
-events = [null]
+[sub_resource type="InputEventAction" id="InputEventAction_cks35"]
+action = &"artstand"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_2vsdt"]
+events = [SubResource("InputEventAction_cks35")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e061r"]
 bg_color = Color(0.41598, 0.41598, 0.41598, 1)
@@ -78,8 +82,10 @@ offset_right = -28.0
 offset_bottom = -86.0
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Click the Artstand to paint on the canvas"
 theme_override_styles/focus = SubResource("StyleBoxFlat_4h121")
-shortcut = SubResource("Shortcut_rijc6")
+action_mode = 0
+shortcut = SubResource("Shortcut_2vsdt")
 flat = true
 
 [node name="SpriteGlow" type="Sprite2D" parent="."]
@@ -133,5 +139,3 @@ value = 15.0
 [node name="AudioClick" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_thlrh")
 volume_db = -12.0
-
-[connection signal="button_down" from="Button" to="." method="_on_button_down"]

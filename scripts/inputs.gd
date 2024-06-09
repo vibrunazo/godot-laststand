@@ -6,6 +6,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _unhandled_key_input(event):
+	#print(event)
 	if event.is_action_pressed('ui_fullscreen'):
 		UI.toggle_fullscreen()
 	elif event.is_action_pressed("debug_speed"):

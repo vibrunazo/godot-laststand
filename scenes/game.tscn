@@ -125,6 +125,7 @@ path = NodePath("../TileMap/Path2D")
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="UILayer" instance=ExtResource("9_8ivhk")]
+metadata/_edit_lock_ = true
 
 [node name="AudioMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_4d3t4")
