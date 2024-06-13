@@ -10,11 +10,20 @@ extends Node
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 400
+@export var max_enemies: int = 5
+@export var wave_money_reward: int = 200
 
+## Maximum number of waves to spawn
+@export var waves: int = 5
+## Which wave to start in by index
+@export var starting_wave: int = 0
+## The wave currently spawning
+var current_wave: int = 0
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var time_between_spawns: float = initial_time_between_spawns
 
+## emitted when all enemies of one wave have been defeated
+signal wave_defeated()
 ## emitted when all spawned enemies have been killed
 signal spawner_defeated(spawner: Spawner)
 
@@ -28,6 +37,14 @@ var time: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Events.game_over.connect(_on_game_over)
+	current_wave = starting_wave
+	start_spawner()
+
+func start_spawner():
+	difficulty = 0
+	num_spawned = 0
+	num_killed = 0
+	spawn_timer.start()
 	
 func try_spawn_enemy():
 	if num_spawned >= max_enemies and max_enemies > 0:
@@ -64,7 +81,23 @@ func update_difficulty():
 	time_between_spawns = round(difficulty_curve.sample_baked(di) * (initial_time_between_spawns - min_time_between_spawns) + min_time_between_spawns)
 	time_between_spawns = clamp(time_between_spawns, min_time_between_spawns, initial_time_between_spawns)
 	#print('time: %s, d: %s, tbs: %s, di: %s, c: %s' % [time, difficulty, time_between_spawns, di, difficulty_curve.sample_baked(di)])
-	
+
+func on_wave_defeated():
+	print('wave defeated: %s' % [current_wave])
+	GameState.money += wave_money_reward
+	spawn_timer.stop() 
+	current_wave += 1
+	if current_wave == waves:
+		on_all_waves_defeated()
+	else:
+		await get_tree().create_timer(2).timeout
+		start_spawner()
+
+func on_all_waves_defeated():
+	print('all waves defeated')
+	spawner_defeated.emit(self)
+	queue_free()
+
 func _on_spawn_timer_timeout():
 	if not path: return
 	time += spawn_timer.wait_time
@@ -76,5 +109,4 @@ func _on_game_over():
 func _on_enemy_killed():
 	num_killed += 1
 	if num_killed >= max_enemies and max_enemies > 0:
-		spawner_defeated.emit(self)
-		queue_free()
+		on_wave_defeated()

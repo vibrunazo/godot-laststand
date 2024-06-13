@@ -122,5 +122,3 @@ text = "Back to
 Main Menu"
 flat = true
 script = ExtResource("5_b1bes")
-
-[connection signal="pressed" from="Root/HBoxContainer/NextLevelButton" to="Root/HBoxContainer/NextLevelButton" method="_on_pressed"]
