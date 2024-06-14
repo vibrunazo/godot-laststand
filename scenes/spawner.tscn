@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drv80csgi37yb"]
+[gd_scene load_steps=10 format=3 uid="uid://drv80csgi37yb"]
 
 [ext_resource type="Script" path="res://scenes/spawner.gd" id="1_1sidu"]
 [ext_resource type="PackedScene" uid="uid://d175g5ac1ab72" path="res://scenes/enemy.tscn" id="2_v8cd3"]
@@ -12,6 +12,7 @@ enemy_scene_index = 0
 initial_time_between_spawns = 2.0
 min_time_between_spawns = 0.2
 max_difficulty = 20
+inc_difficulty_every = 2.0
 time_reduction_from_difficulty = 300
 max_enemies = 5
 wave_money_reward = 200
@@ -22,6 +23,7 @@ enemy_scene_index = 0
 initial_time_between_spawns = 2.0
 min_time_between_spawns = 0.2
 max_difficulty = 20
+inc_difficulty_every = 2.0
 time_reduction_from_difficulty = 300
 max_enemies = 10
 wave_money_reward = 300
@@ -32,14 +34,26 @@ enemy_scene_index = 0
 initial_time_between_spawns = 0.5
 min_time_between_spawns = 0.2
 max_difficulty = 20
+inc_difficulty_every = 2.0
 time_reduction_from_difficulty = 300
 max_enemies = 50
 wave_money_reward = 400
 
+[sub_resource type="Resource" id="Resource_kdmua"]
+script = ExtResource("3_6odq1")
+enemy_scene_index = 0
+initial_time_between_spawns = 1.0
+min_time_between_spawns = 0.2
+max_difficulty = 20
+inc_difficulty_every = 2.0
+time_reduction_from_difficulty = 300
+max_enemies = 50
+wave_money_reward = 200
+
 [node name="Spawner" type="Node"]
 script = ExtResource("1_1sidu")
 difficulty_curve = ExtResource("3_yc6ud")
-waves = Array[ExtResource("3_6odq1")]([SubResource("Resource_coqef"), SubResource("Resource_7ysfw"), SubResource("Resource_vm2me")])
+waves = Array[ExtResource("3_6odq1")]([SubResource("Resource_coqef"), SubResource("Resource_7ysfw"), SubResource("Resource_vm2me"), SubResource("Resource_kdmua")])
 enemy_scene = ExtResource("2_v8cd3")
 enemy_big_scene = ExtResource("3_jud2q")
 

@@ -11,6 +11,8 @@ extends Node
 @export var initial_time_between_spawns: float = 2
 @export var min_time_between_spawns: float = 0.2
 @export var max_difficulty: int = 20
+## increases difficulty by every this many seconds
+@export var inc_difficulty_every: float = 2
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
 @export var max_enemies: int = 10
@@ -67,6 +69,7 @@ func set_wave_stats_to_current_wave():
 	initial_time_between_spawns = waves[current_wave].initial_time_between_spawns
 	min_time_between_spawns = waves[current_wave].min_time_between_spawns
 	max_difficulty = waves[current_wave].max_difficulty
+	inc_difficulty_every = waves[current_wave].inc_difficulty_every
 	time_reduction_from_difficulty = waves[current_wave].time_reduction_from_difficulty
 	max_enemies = waves[current_wave].max_enemies
 	wave_money_reward = waves[current_wave].wave_money_reward
@@ -101,7 +104,7 @@ func pick_enemy_to_spawn() -> Enemy:
 
 func update_difficulty():
 	#var time := time / 1000.0
-	difficulty = round(time / 10.0)
+	difficulty = round(time / inc_difficulty_every)
 	var di: float = float(difficulty) / float(max_difficulty)
 	time_between_spawns = round(difficulty_curve.sample_baked(di) * (initial_time_between_spawns - min_time_between_spawns) + min_time_between_spawns)
 	time_between_spawns = clamp(time_between_spawns, min_time_between_spawns, initial_time_between_spawns)

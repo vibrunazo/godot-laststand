@@ -7,8 +7,7 @@
 speed_min = 80.0
 speed_max = 180.0
 max_health = 500.0
-money_on_death = 20.0
-money_per_hit = 0.05
+money_on_death = 10.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_2varw")

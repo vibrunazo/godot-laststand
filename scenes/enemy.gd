@@ -6,9 +6,9 @@ extends PathFollow2D
 @export var offset_max: float = 10.0
 @export var max_health: float = 80.0
 ## How much money I give on death
-@export var money_on_death: float = 2
+@export var money_on_death: float = 0.5
 ## How much money I give per health point taken in damage
-@export var money_per_hit: float = 0.1
+@export var money_per_hit: float = 0.025
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var target_pos: Node2D = $TargetPos
