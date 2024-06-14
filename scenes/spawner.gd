@@ -2,23 +2,24 @@ class_name Spawner
 extends Node
 
 @export var path: Path2D
+@export var difficulty_curve: Curve
+@export var waves: Array[WaveData]
 @export var enemy_scene: PackedScene
 @export var enemy_big_scene: PackedScene
-@export var difficulty_curve: Curve
-@export var initial_time_between_spawns: float = 5
+# --- wave stats
+## time between spawns for the first spawn before reductions in difficulty, in seconds
+@export var initial_time_between_spawns: float = 2
 @export var min_time_between_spawns: float = 0.2
 @export var max_difficulty: int = 20
 ## How much time between spawns is reduced each time difficulty increases
 @export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 5
+@export var max_enemies: int = 10
 @export var wave_money_reward: int = 200
-
+# ---
 ## Maximum number of waves to spawn
-@export var waves: int = 5
+@export var num_waves: int = 5
 ## Which wave to start in by index
 @export var starting_wave: int = 0
-## The wave currently spawning
-var current_wave: int = 0
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var time_between_spawns: float = initial_time_between_spawns
 
@@ -26,6 +27,11 @@ var current_wave: int = 0
 signal wave_defeated()
 ## emitted when all spawned enemies have been killed
 signal spawner_defeated(spawner: Spawner)
+
+## The wave currently spawning
+var current_wave: int = 0
+
+# State of current wave
 
 var last_spawn_time: float = 0
 var difficulty: int = 0
@@ -37,14 +43,33 @@ var time: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Events.game_over.connect(_on_game_over)
-	current_wave = starting_wave
+	num_waves = waves.size()
+	if starting_wave < num_waves:
+		current_wave = starting_wave
 	start_spawner()
 
 func start_spawner():
+	reset_wave_state()
+	set_wave_stats_to_current_wave()
+	spawn_timer.start()
+
+func reset_wave_state():
+	time = 0
+	last_spawn_time = 0
 	difficulty = 0
 	num_spawned = 0
 	num_killed = 0
-	spawn_timer.start()
+
+func set_wave_stats_to_current_wave():
+	if current_wave >= waves.size(): 
+		printerr('spawner set_wave_stats tried to use inexistent wave')
+		return
+	initial_time_between_spawns = waves[current_wave].initial_time_between_spawns
+	min_time_between_spawns = waves[current_wave].min_time_between_spawns
+	max_difficulty = waves[current_wave].max_difficulty
+	time_reduction_from_difficulty = waves[current_wave].time_reduction_from_difficulty
+	max_enemies = waves[current_wave].max_enemies
+	wave_money_reward = waves[current_wave].wave_money_reward
 	
 func try_spawn_enemy():
 	if num_spawned >= max_enemies and max_enemies > 0:
@@ -80,14 +105,14 @@ func update_difficulty():
 	var di: float = float(difficulty) / float(max_difficulty)
 	time_between_spawns = round(difficulty_curve.sample_baked(di) * (initial_time_between_spawns - min_time_between_spawns) + min_time_between_spawns)
 	time_between_spawns = clamp(time_between_spawns, min_time_between_spawns, initial_time_between_spawns)
-	#print('time: %s, d: %s, tbs: %s, di: %s, c: %s' % [time, difficulty, time_between_spawns, di, difficulty_curve.sample_baked(di)])
+	print('time: %s, difficulty: %s, tbs: %s, di: %s, c: %s' % [time, difficulty, time_between_spawns, di, difficulty_curve.sample_baked(di)])
 
 func on_wave_defeated():
 	print('wave defeated: %s' % [current_wave])
 	GameState.money += wave_money_reward
 	spawn_timer.stop() 
 	current_wave += 1
-	if current_wave == waves:
+	if current_wave == num_waves:
 		on_all_waves_defeated()
 	else:
 		await get_tree().create_timer(2).timeout
