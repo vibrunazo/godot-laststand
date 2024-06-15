@@ -19,10 +19,8 @@ signal spawner_defeated(spawner: Spawner)
 
 ## The wave currently spawning
 var current_wave: int = 0
-## enemies that were killed in current wave
-var num_killed: int = 0
-## max enemies that will be spawned in current wave
-var max_enemies: int = 10
+
+var wave_states: Array[WaveState]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,27 +35,28 @@ func start_spawner():
 	start_wave()
 
 func start_wave():
-	num_killed = 0
-	max_enemies = 0
 	build_wave_timers()
 
 func build_wave_timers():
 	if current_wave >= num_waves:
 		return
+	var new_wave_state: WaveState = WaveState.new()
+	wave_states.append(new_wave_state)
 	for enemy_spawn: EnemySpawn in waves[current_wave].enemy_spawns:
-		max_enemies += enemy_spawn.max_spawns
+		wave_states[current_wave].max_enemies += enemy_spawn.max_spawns
 		var new_timer: SpawnTimer = SpawnTimer.new()
 		new_timer.enemy_spawn = enemy_spawn
+		new_timer.wave_index = current_wave
 		add_child(new_timer)
 		new_timer.start(enemy_spawn.spawn_timer)
 		new_timer.timeout.connect(_on_spawn_timer_timeout.bind(new_timer))
 
-func spawn_by_index(enemy_index: int) -> bool:
+func spawn_by_index(enemy_index: int, wave_index: int) -> bool:
 	if enemy_index >= enemy_scenes.size(): return false
 	var enemy_scene: PackedScene = enemy_scenes[enemy_index]
 	if not enemy_scene: return false
 	var new_enemy: Enemy = enemy_scene.instantiate() as Enemy
-	new_enemy.killed.connect(_on_enemy_killed)
+	new_enemy.killed.connect(_on_enemy_killed.bind(wave_index))
 	path.add_child(new_enemy)
 	return true
 	
@@ -80,15 +79,16 @@ func on_all_waves_defeated():
 func _on_game_over():
 	queue_free()
 
-func _on_enemy_killed():
-	num_killed += 1
-	if num_killed >= max_enemies and max_enemies > 0:
+func _on_enemy_killed(wave_index: int):
+	var wave_state: WaveState = wave_states[wave_index]
+	wave_state.killed += 1
+	if wave_state.killed >= wave_state.max_enemies and wave_state.max_enemies > 0:
 		on_wave_defeated()
 
 func _on_spawn_timer_timeout(spawner: SpawnTimer):
 	var enemy_spawn: EnemySpawn = spawner.enemy_spawn
 	print('timeout e: %s max: %s' % [enemy_spawn.enemy_to_spawn, enemy_spawn.max_spawns])
-	if spawn_by_index(enemy_spawn.enemy_to_spawn):
+	if spawn_by_index(enemy_spawn.enemy_to_spawn, spawner.wave_index):
 		spawner.spawned += 1
 	if spawner.spawned >= enemy_spawn.max_spawns:
 		spawner.queue_free()
