@@ -1,15 +1,8 @@
 class_name WaveData
 extends Resource
 
-@export var enemy_scene_index: int = 0
-
-## time between spawns for the first spawn before reductions in difficulty, in seconds
-@export var initial_time_between_spawns: float = 2
-@export var min_time_between_spawns: float = 0.2
-@export var max_difficulty: int = 20
-## increases difficulty by every this many seconds
-@export var inc_difficulty_every: float = 2
-## How much time between spawns is reduced each time difficulty increases
-@export var time_reduction_from_difficulty: int = 300
-@export var max_enemies: int = 5
+## Data about how many of each enemy to spawn. Each EnemySpawn will generate a Timer that will 
+## Spawn enemies every X seconds.
+@export var enemy_spawns: Array[EnemySpawn]
+## Money rewarded after all enemies dead and the wave is cleared
 @export var wave_money_reward: int = 200
