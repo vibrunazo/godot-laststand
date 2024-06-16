@@ -34,7 +34,16 @@ func _ready():
 func start_spawner():
 	start_wave()
 
+func next_wave(wave_index: int):
+	print('trying to start next wave after %s, states: %s' % [wave_index, wave_states.size()])
+	if wave_states.size() > wave_index + 1:
+		print('wave already started')
+		return
+	current_wave += 1
+	start_wave()
+
 func start_wave():
+	print('starting wave %s' % [current_wave])
 	build_wave_timers()
 
 func build_wave_timers():
@@ -60,15 +69,19 @@ func spawn_by_index(enemy_index: int, wave_index: int) -> bool:
 	path.add_child(new_enemy)
 	return true
 	
-func on_wave_defeated():
-	print('wave defeated: %s' % [current_wave])
-	GameState.money += waves[current_wave].wave_money_reward
-	current_wave += 1
-	if current_wave == num_waves:
+func on_wave_finished_spawning(wave_index: int):
+	print('wave %s finished spawning all %s enemies' % [wave_index, wave_states[wave_index].max_enemies])
+	await get_tree().create_timer(15).timeout
+	next_wave(wave_index)
+	
+func on_wave_defeated(wave_index: int):
+	print('wave defeated: %s' % [wave_index])
+	GameState.money += waves[wave_index].wave_money_reward
+	if wave_index + 1 == num_waves:
 		on_all_waves_defeated()
 	else:
-		await get_tree().create_timer(2).timeout
-		start_wave()
+		await get_tree().create_timer(3).timeout
+		next_wave(wave_index)
 
 func on_all_waves_defeated():
 	print('all waves defeated')
@@ -83,12 +96,16 @@ func _on_enemy_killed(wave_index: int):
 	var wave_state: WaveState = wave_states[wave_index]
 	wave_state.killed += 1
 	if wave_state.killed >= wave_state.max_enemies and wave_state.max_enemies > 0:
-		on_wave_defeated()
+		on_wave_defeated(wave_index)
 
 func _on_spawn_timer_timeout(spawner: SpawnTimer):
 	var enemy_spawn: EnemySpawn = spawner.enemy_spawn
-	print('timeout e: %s max: %s' % [enemy_spawn.enemy_to_spawn, enemy_spawn.max_spawns])
+	print('timeout i: %s e: %s max: %s' % [spawner.wave_index, enemy_spawn.enemy_to_spawn, enemy_spawn.max_spawns])
+	var wave_state := wave_states[spawner.wave_index]
 	if spawn_by_index(enemy_spawn.enemy_to_spawn, spawner.wave_index):
 		spawner.spawned += 1
+		wave_states[spawner.wave_index].spawned += 1
 	if spawner.spawned >= enemy_spawn.max_spawns:
+		if wave_state.spawned >= wave_state.max_enemies:
+			on_wave_finished_spawning(spawner.wave_index)
 		spawner.queue_free()
