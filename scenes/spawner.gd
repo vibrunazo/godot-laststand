@@ -11,6 +11,8 @@ extends Node
 @export var num_waves: int = 5
 ## Which wave to start in by index
 @export var starting_wave: int = 0
+## How long in seconds the next wave starts after the previous one finished spawning
+@export var time_between_waves: float = 60
 
 ## emitted when all enemies of one wave have been defeated
 signal wave_defeated()
@@ -28,7 +30,7 @@ func _ready():
 	num_waves = waves.size()
 	if starting_wave < num_waves:
 		current_wave = starting_wave
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(3).timeout
 	start_spawner()
 
 func start_spawner():
@@ -71,7 +73,7 @@ func spawn_by_index(enemy_index: int, wave_index: int) -> bool:
 	
 func on_wave_finished_spawning(wave_index: int):
 	print('wave %s finished spawning all %s enemies' % [wave_index, wave_states[wave_index].max_enemies])
-	await get_tree().create_timer(15).timeout
+	await get_tree().create_timer(time_between_waves).timeout
 	next_wave(wave_index)
 	
 func on_wave_defeated(wave_index: int):

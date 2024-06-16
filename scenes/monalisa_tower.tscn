@@ -180,7 +180,7 @@ texture = ExtResource("5_r3tyb")
 position = Vector2(-48, -20)
 
 [node name="AttackTimer" parent="." index="3"]
-wait_time = 5.0
+wait_time = 7.0
 
 [node name="AudioFire" parent="." index="5"]
 stream = SubResource("AudioStreamRandomizer_e4628")
