@@ -35,7 +35,6 @@ wait_time = 3.0
 
 [node name="AudioPlaced" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_5es80")
-volume_db = -6.0
 
 [node name="AudioFire" type="AudioStreamPlayer2D" parent="."]
 
