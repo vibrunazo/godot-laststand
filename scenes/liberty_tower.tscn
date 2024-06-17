@@ -9,7 +9,7 @@
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_12lb3"]
 playback_mode = 1
-random_pitch = 1.4
+random_pitch = 1.2
 random_volume_offset_db = 3.0
 streams_count = 3
 stream_0/stream = ExtResource("4_jr0d0")

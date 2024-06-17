@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://7pbr0774sthb"
+path="res://.godot/imported/body hits metal 8.ogg-942b26e41da80b440902899d02c1d780.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/body hits metal 8.ogg"
+dest_files=["res://.godot/imported/body hits metal 8.ogg-942b26e41da80b440902899d02c1d780.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

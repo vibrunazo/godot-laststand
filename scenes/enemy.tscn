@@ -1,19 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://d175g5ac1ab72"]
+[gd_scene load_steps=12 format=3 uid="uid://d175g5ac1ab72"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_4wxmt"]
 [ext_resource type="Texture2D" uid="uid://cg5ouej5vucv7" path="res://assets/tex/robot.png" id="2_4xa3w"]
 [ext_resource type="AudioStream" uid="uid://db3tgkddfrexw" path="res://assets/audio/body hits metal 4.ogg" id="3_3m3fo"]
+[ext_resource type="AudioStream" uid="uid://cx7dskcecr4b" path="res://assets/audio/body hits metal 5.ogg" id="4_1apit"]
 [ext_resource type="Script" path="res://scenes/audio_detached.gd" id="4_rw205"]
+[ext_resource type="AudioStream" uid="uid://7pbr0774sthb" path="res://assets/audio/body hits metal 8.ogg" id="5_n6wkh"]
+[ext_resource type="AudioStream" uid="uid://bj1cnujrxtlsr" path="res://assets/audio/body hits metal 10.ogg" id="6_n1woo"]
+[ext_resource type="AudioStream" uid="uid://5jc1xfco8bjm" path="res://assets/audio/bat hit 7.ogg" id="7_uwyqn"]
+[ext_resource type="AudioStream" uid="uid://ceymj1kontwx" path="res://assets/audio/bat hit 8.ogg" id="8_p5wjw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5ry1"]
 size = Vector2(48, 79)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w2brv"]
+playback_mode = 1
 random_pitch = 1.3
 random_volume_offset_db = 6.0
-streams_count = 1
+streams_count = 6
 stream_0/stream = ExtResource("3_3m3fo")
 stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_1apit")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_n6wkh")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_n1woo")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_uwyqn")
+stream_4/weight = 3.0
+stream_5/stream = ExtResource("8_p5wjw")
+stream_5/weight = 3.0
 
 [node name="Enemy" type="PathFollow2D"]
 rotates = false
@@ -36,5 +52,7 @@ position = Vector2(0, -56)
 
 [node name="AudioGethit" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_w2brv")
+volume_db = -3.0
+max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("4_rw205")

@@ -77,7 +77,7 @@ func anim_placed():
 @onready var ini_canvas_scale: Vector2
 func anim_shoot(target: Enemy):
 	var dir: Vector2 = (target.global_position - sprite_canvas.global_position).normalized()
-	var recoil_pos = sprite_canvas.global_position - dir * 50
+	var recoil_pos = sprite_canvas.global_position - dir * 30
 	var target_scale := Vector2(randf_range(0.8, 1.1), randf_range(0.8, 1.1))
 	anim_tween = create_tween()
 	anim_tween.set_parallel(true)
