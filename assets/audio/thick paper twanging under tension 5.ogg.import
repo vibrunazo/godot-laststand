@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bqsk42y5bsmpk"
+path="res://.godot/imported/thick paper twanging under tension 5.ogg-49ff92e6735d7d71d09edd6003367eba.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/thick paper twanging under tension 5.ogg"
+dest_files=["res://.godot/imported/thick paper twanging under tension 5.ogg-49ff92e6735d7d71d09edd6003367eba.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

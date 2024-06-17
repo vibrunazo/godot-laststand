@@ -13,9 +13,9 @@ random_pitch = 1.2
 random_volume_offset_db = 3.0
 streams_count = 3
 stream_0/stream = ExtResource("4_jr0d0")
-stream_0/weight = 3.0
+stream_0/weight = 9.0
 stream_1/stream = ExtResource("5_vepxg")
-stream_1/weight = 1.0
+stream_1/weight = 3.0
 stream_2/stream = ExtResource("6_3mf2m")
 stream_2/weight = 1.0
 
