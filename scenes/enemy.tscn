@@ -36,6 +36,5 @@ position = Vector2(0, -56)
 
 [node name="AudioGethit" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_w2brv")
-volume_db = 12.0
 bus = &"SFX"
 script = ExtResource("4_rw205")

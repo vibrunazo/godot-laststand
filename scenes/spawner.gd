@@ -12,7 +12,7 @@ extends Node
 ## Which wave to start in by index
 @export var starting_wave: int = 0
 ## How long in seconds the next wave starts after the previous one finished spawning
-@export var time_between_waves: float = 60
+@export var time_between_waves: float = 45
 
 ## emitted when all enemies of one wave have been defeated
 signal wave_defeated()

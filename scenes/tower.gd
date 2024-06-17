@@ -10,6 +10,7 @@ extends Node2D
 @onready var audio_fire = $AudioFire
 @onready var anim = $Anim
 @onready var spawn_pos = $SpawnPos
+@onready var sprite_canvas = $Sprite2D
 
 var is_being_placed: bool = true
 var aggro_list: Array[Enemy]
@@ -27,6 +28,7 @@ func attack():
 	var target: Enemy = pick_target_from_aggro_list()
 	#target.get_hit(damage)
 	if not target.is_ready: return
+	anim_shoot(target)
 	spawn_bullet(target)
 
 func pick_target_from_aggro_list() -> Enemy:
@@ -71,8 +73,29 @@ func anim_placed():
 	anim_tween.set_trans(Tween.TRANS_ELASTIC)
 	anim_tween.tween_property(self, "scale", Vector2(1, 1), 0.9)
 
+@onready var ini_canvas_pos: Vector2
+@onready var ini_canvas_scale: Vector2
+func anim_shoot(target: Enemy):
+	var dir: Vector2 = (target.global_position - sprite_canvas.global_position).normalized()
+	var recoil_pos = sprite_canvas.global_position - dir * 50
+	var target_scale := Vector2(randf_range(0.8, 1.1), randf_range(0.8, 1.1))
+	anim_tween = create_tween()
+	anim_tween.set_parallel(true)
+	anim_tween.set_ease(Tween.EASE_OUT)
+	anim_tween.set_trans(Tween.TRANS_QUAD)
+	anim_tween.tween_property(sprite_canvas, "global_position", recoil_pos, 0.08)
+	anim_tween.tween_property(sprite_canvas, "scale", ini_canvas_scale * target_scale, 0.08)
+	anim_tween.set_parallel(false)
+	anim_tween.set_ease(Tween.EASE_IN_OUT)
+	anim_tween.set_trans(Tween.TRANS_QUAD)
+	anim_tween.tween_property(sprite_canvas, "global_position", ini_canvas_pos, 0.8)
+	anim_tween.set_parallel(true)
+	anim_tween.tween_property(sprite_canvas, "scale", ini_canvas_scale , 0.8)
+
 func place():
 	is_being_placed = false
+	ini_canvas_pos = sprite_canvas.global_position
+	ini_canvas_scale = sprite_canvas.scale
 	anim_placed()
 	if not aggro_list.is_empty():
 		attack_timer.start()
