@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://g8cudfwopoas"]
+[gd_scene load_steps=9 format=3 uid="uid://g8cudfwopoas"]
 
 [ext_resource type="PackedScene" uid="uid://dvgwqwn3c2bi7" path="res://scenes/tower.tscn" id="1_xh7bg"]
 [ext_resource type="PackedScene" uid="uid://lsvarokp3y85" path="res://scenes/liberty_bullet.tscn" id="2_4ords"]
 [ext_resource type="Texture2D" uid="uid://dg30cokf5p1nt" path="res://assets/tex/canvas_liberty.png" id="2_5qtpv"]
 [ext_resource type="AudioStream" uid="uid://c86hxu5lpb21e" path="res://assets/audio/GUNPis_Pistol Fire Longer Tail_05.ogg" id="4_jr0d0"]
+[ext_resource type="PackedScene" uid="uid://dx1eltd345i3l" path="res://scenes/muzzle_flash.tscn" id="4_u5m6k"]
 [ext_resource type="AudioStream" uid="uid://bpgf1ehiqpal8" path="res://assets/audio/521370__cetsoundcrew__pistol-shot-ricochet-clean.ogg" id="5_vepxg"]
 [ext_resource type="AudioStream" uid="uid://2aet1x2iibc" path="res://assets/audio/213925__diboz__pistol_riccochet.ogg" id="6_3mf2m"]
 
@@ -22,9 +23,13 @@ stream_2/weight = 1.0
 [node name="LibertyTower" instance=ExtResource("1_xh7bg")]
 damage = 8.0
 bullet_scene = ExtResource("2_4ords")
+muzzle_scene = ExtResource("4_u5m6k")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_5qtpv")
+
+[node name="SpawnPos" parent="." index="2"]
+position = Vector2(-23, -13)
 
 [node name="AttackTimer" parent="." index="3"]
 wait_time = 0.6

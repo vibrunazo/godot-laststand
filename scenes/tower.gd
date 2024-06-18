@@ -4,12 +4,13 @@ extends Node2D
 
 @export var damage: float = 10
 @export var bullet_scene: PackedScene
+@export var muzzle_scene: PackedScene
 
 @onready var attack_timer = $AttackTimer
 @onready var audio_placed = $AudioPlaced
 @onready var audio_fire = $AudioFire
 @onready var anim = $Anim
-@onready var spawn_pos = $SpawnPos
+@onready var spawn_pos: Node2D = $SpawnPos
 @onready var sprite_canvas = $Sprite2D
 
 var is_being_placed: bool = true
@@ -29,6 +30,7 @@ func attack():
 	#target.get_hit(damage)
 	if not target.is_ready: return
 	anim_shoot(target)
+	spawn_muzzle_flash()
 	spawn_bullet(target)
 
 func pick_target_from_aggro_list() -> Enemy:
@@ -41,6 +43,16 @@ func pick_target_from_aggro_list() -> Enemy:
 			score = enemy.progress_ratio
 	return target
 
+func spawn_muzzle_flash():
+	if not muzzle_scene: return
+	#var fxlayer = get_tree().get_first_node_in_group("fxlayer")
+	#var fxlayer = spawn_pos
+	#if not fxlayer: return
+	var muzzle: Node2D = muzzle_scene.instantiate() as Node2D
+	sprite_canvas.add_child(muzzle)
+	muzzle.global_position = spawn_pos.global_position
+	#fxlayer.call_deferred("add_child", muzzle)
+
 func spawn_bullet(target: Enemy):
 	if not bullet_scene: return
 	var tower_layer = get_tree().get_first_node_in_group("tower_layer")
@@ -49,7 +61,7 @@ func spawn_bullet(target: Enemy):
 	bullet.damage = damage
 	bullet.target = target
 	bullet.caster = self
-	bullet.global_position = global_position
+	bullet.global_position = spawn_pos.global_position
 	tower_layer.call_deferred("add_child", bullet)
 	audio_fire.play()
 	
