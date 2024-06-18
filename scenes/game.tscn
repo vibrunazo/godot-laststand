@@ -97,7 +97,7 @@ unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="GameCam" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.6, 0.6)
 script = ExtResource("8_ooj1h")
 
 [node name="FXLayer" type="CanvasLayer" parent="."]

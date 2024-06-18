@@ -28,6 +28,7 @@ func toggle_zoom(target_node: Node2D):
 
 var zoom_tween: Tween
 func focus_on(target_node: Node2D):
+	ini_pos = global_position
 	zoom_to(target_node.global_position, Vector2(1,1), zoom_in_speed)
 	is_zoomed_in = true
 
@@ -47,3 +48,6 @@ func _on_zoom_finished():
 func zoom_out():
 	zoom_to(ini_pos, ini_zoom, zoom_out_speed)
 	is_zoomed_in = false
+
+func input_dir(dir: Vector2):
+	global_position += dir * 1000 * get_process_delta_time() 

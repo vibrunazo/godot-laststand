@@ -153,6 +153,16 @@ func _unhandled_input(event):
 			tower_being_placed.modulate = Color.WHITE
 		else:
 			tower_being_placed.modulate = Color.RED
+
+func _unhandled_key_input(event):
+	if event.is_action("ui_left"):
+		game_cam.input_dir(Vector2.LEFT)
+	if event.is_action("ui_right"):
+		game_cam.input_dir(Vector2.RIGHT)
+	if event.is_action("ui_up"):
+		game_cam.input_dir(Vector2.UP)
+	if event.is_action("ui_down"):
+		game_cam.input_dir(Vector2.DOWN)
 				
 			
 func _on_artstand_clicked():
